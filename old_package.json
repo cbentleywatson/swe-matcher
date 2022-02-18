@@ -1,0 +1,27 @@
+{
+  "name": "swe-matcher",
+  "version": "1.0.0",
+  "description": "A simple system for matching students with the optimal project group",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "student-groups",
+    "personality-match"
+  ],
+  "author": "swe-matcher-group-uf",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbentleywatson/swe-matcher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cbentleywatson/swe-matcher/issues"
+  },
+  "homepage": "https://github.com/cbentleywatson/swe-matcher#readme",
+  "dependencies": {
+    "nodejs": "0.0.0",
+    "react-script": "^2.0.5"
+  }
+}
