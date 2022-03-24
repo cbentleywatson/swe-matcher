@@ -1,60 +1,109 @@
-import 'survey-react/modern.min.css';
-// import 'survey-react/survey.min.css';
-import { Survey, StylesManager, Model } from 'survey-react';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import {
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    TextInput,
+    Button,
+    TouchableOpacity,
+} from "react-native";
 
-StylesManager.applyTheme("modern");
+export default function App() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-const surveyJson = {
-  elements: [
-  {
-    name: "FirstName",
-    title: "Enter your first name:",
-    type: "text"
-  }, 
-  {
-    name: "LastName",
-    title: "Enter your last name:",
-    type: "text"
-  }, 
-  {
-    name: "Year",
-    title: "Select your year in school",
-    type: "dropdown",
-    choices: ["1st year", "2nd year", "3rd year", "4th year", "5th year", "Graduate student"]
-  },
-  {
-    name: "Department",
-    title: "Select your department",
-    type: "dropdown",
-    choices: ["Accounting", "Agricultural and Life Sciences", "Arts","Business", 
-    "Construction", "Design", "Education", "Engineering", "Health and Human Performance", 
-    "Journalism", "Liberal Arts and Sciences", "Natural Resources and Environment", 
-    "Nursing", "Public Health", "Other"]
-  },
-  {
-    name: "Email",
-    title: "Enter your ufl email address:",
-    type: "text"
-  } ]
-};
+    return (
+        <View style={styles.container}>
+            <Image style={styles.image} source={require("./logo512.png")} />
 
-function App() {
-  const survey = new Model(surveyJson);
-  const alertResults = useCallback((sender) => {
-    const results = JSON.stringify(sender.data);
-    alert(results);
-  }, []);
+            <StatusBar style="auto" />
+            <View style={styles.inputView}>
+                <TextInput
+                    style={styles.TextInput}
+                    placeholder="Email."
+                    placeholderTextColor="#003f5c"
+                    onChangeText={(email) => setEmail(email)}
+                />
+            </View>
 
-  survey.onComplete.add(alertResults);
+            <View style={styles.inputView}>
+                <TextInput
+                    style={styles.TextInput}
+                    placeholder="Password."
+                    placeholderTextColor="#003f5c"
+                    secureTextEntry={true}
+                    onChangeText={(password) => setPassword(password)}
+                />
+            </View>
 
-  return (
-    <div className="App">
-      <h1>MatchMakers</h1>
-      <h2>Please complete the following questions</h2>
-      <Survey model={survey} />
-    </div>
-  );
+            <TouchableOpacity>
+                <Text style={styles.forgot_button}>Forgot Password?</Text>
+            </TouchableOpacity>
 
+            <TouchableOpacity style={styles.loginBtn}>
+                <Text style={styles.loginText}>LOGIN</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.profileBtn}>
+                <Text style={styles.loginText}>CREATE PROFILE</Text>
+            </TouchableOpacity>
+        </View>
+    );
 }
 
-export default App;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+
+    image: {
+        marginBottom: 40,
+    },
+
+    inputView: {
+        backgroundColor: "#FFC0CB",
+        borderRadius: 30,
+        width: "70%",
+        height: 45,
+        marginBottom: 20,
+
+        alignItems: "center",
+    },
+
+    TextInput: {
+        height: 50,
+        flex: 1,
+        padding: 10,
+        marginLeft: 20,
+    },
+
+    forgot_button: {
+        height: 30,
+        marginBottom: 30,
+    },
+
+    loginBtn: {
+        width: "80%",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 40,
+        backgroundColor: "#ff1493",
+    },
+
+    profileBtn: {
+        width: "80%",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 40,
+        backgroundColor: "#ff1493",
+    },
+});
