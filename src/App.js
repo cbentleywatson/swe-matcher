@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 import 'survey-react/modern.min.css';
 // import 'survey-react/survey.min.css';
 import { Survey, StylesManager, Model } from 'survey-react';
