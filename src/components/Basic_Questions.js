@@ -1,11 +1,33 @@
 import 'survey-react/modern.min.css';
+import { useCallback } from 'react';
 
 import { Survey, StylesManager, Model } from 'survey-react';
-
+import { NavLink } from 'react-router-dom';
 
 StylesManager.applyTheme("modern");
 
-const surveyJson = {
+ 
+const Basic_Questions = () => {
+  const survey = new Model(surveyJSON);
+  const alertResults = useCallback((sender) => {
+    const results = JSON.stringify(sender.data);
+    alert(results);
+  }, []);
+  survey.onComplete.add(alertResults);
+
+  return (
+    <div className="Basic">
+      <h1>MatchMakers</h1>
+      <h2>Please complete the following questions</h2>
+      <Survey model={survey} />
+      <NavLink to="/">Back to Welcome Page</NavLink>
+    </div>
+    
+  );
+
+
+}
+const surveyJSON = {
     elements: [
         {
             name: "FirstName",
@@ -37,29 +59,9 @@ const surveyJson = {
             title: "Enter your ufl email address:",
             type: "text"
         } ]
+
+
 };
 
-function App() {
-  const survey = new Model(surveyJson);
-  const alertResults = useCallback((sender) => {
-    const results = JSON.stringify(sender.data);
-    alert(results);
-  }, []);
 
-  survey.onComplete.add(alertResults);
-
-  return (
-    <div className="App">
-      <h1>MatchMakers</h1>
-      <h2>Please complete the following questions</h2>
-      <Survey model={survey} />
-    </div>
-  );
-
-}
-
-export default App;
-
-
-
-
+export default Basic_Questions;
