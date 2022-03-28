@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes, Link, Redirect} from "react-router-dom";
 import 'survey-react/modern.min.css';
 import { Survey, StylesManager, Model } from 'survey-react';
 import Welcome from './components/Welcome';
-import Basic from './components/Basic_Questions';
+import Question from './components/Basic_Questions';
 
 StylesManager.applyTheme("modern");
 
@@ -15,7 +15,7 @@ class  App extends Component {
          <div>
               <Routes>
               <Route path="/" element={<Welcome />}></Route>
-              <Route path="/basic_questions" element={<Basic />}></Route>
+              <Route path="/survey" element={<Question />}></Route>
              </Routes>
         </div>
       );

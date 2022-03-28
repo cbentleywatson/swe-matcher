@@ -17,6 +17,7 @@ const Welcome = () => {
 
     return (
         <div>
+        <h1> <center>MatchMakers</center></h1>
         <View style={styles.container}>
             <Image style={styles.image} source={require("./logo512.png")} />
 
@@ -49,15 +50,15 @@ const Welcome = () => {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.profileBtn}>
-                <Text style={styles.loginText}>CREATE PROFILE</Text>
+                <Text style={styles.loginText}></Text>
+                <NavLink to="/survey" >Create Profile</NavLink>
             </TouchableOpacity>
         </View>
-        <NavLink to="/basic_questions">Go to Basic Questions</NavLink>
         </div>
     );
 
 }
-
+/*onClick={ this.toSurvey}*/
 const styles = StyleSheet.create({
     container: {
         flex: 1,
