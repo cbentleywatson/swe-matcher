@@ -23,8 +23,7 @@
     "survey-angular": "^1.9.19",
     "survey-jquery": "^1.9.19",
     "survey-react": "^1.9.19",
-    "web-vitals": "^2.1.4",
-    "nodemon": "^2.0.12"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
