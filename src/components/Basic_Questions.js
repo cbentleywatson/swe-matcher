@@ -11,6 +11,8 @@ const Basic_Questions = () => {
   const survey = new Model(surveyJSON);
   const alertResults = useCallback((sender) => {
     const results = JSON.stringify(sender.data);
+    /*The results need to be send right here */
+
     alert(results);
   }, []);
   survey.onComplete.add(alertResults);
