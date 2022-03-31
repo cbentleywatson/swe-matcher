@@ -3,16 +3,27 @@ import { useCallback } from 'react';
 
 import { Survey, StylesManager, Model } from 'survey-react';
 import { NavLink } from 'react-router-dom';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
+import{axios} from 'axios' ;
+
 
 StylesManager.applyTheme("modern");
 
- 
-const Basic_Questions = () => {
-  const survey = new Model(surveyJSON);
-  const alertResults = useCallback((sender) => {
-    const results = JSON.stringify(sender.data);
-    /*The results need to be send right here */
 
+
+
+
+
+const Basic_Questions = () => {
+
+
+    const survey = new Model(surveyJSON);
+    const alertResults = useCallback((sender) => {
+    /*The results need to be send right here */
+      
+    const results = JSON.stringify(sender.data);
+
+  alert("before axios");
     alert(results);
   }, []);
   survey.onComplete.add(alertResults);

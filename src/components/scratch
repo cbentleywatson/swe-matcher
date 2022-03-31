@@ -1,0 +1,18 @@
+const handleSubmit= asys
+
+/*
+const handleSubmit= (e) =>{
+    alert("before axios")
+  /*const data = await axios.post('http://localhost:3000/', {}).then(res => res.data);*/
+   // const article = { title: 'Axios POST Request Example' };
+    //const response = axios.post('https://reqres.in/api/articles', article);
+    //const response =  axios.post('/survey-results-post', article).then(
+
+    //).then(function (response) {
+      console.log(response);
+    }).catch(function (error) {
+    console.log(error);
+    });
+    alert("after axios")
+    //const res = await axios.post("https://localhost:5000/submit-survey-results", results)
+//}
