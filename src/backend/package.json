@@ -1,0 +1,58 @@
+{
+  "name": "server.",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "expo-status-bar": "^1.2.0",
+    "express": "^4.17.3",
+    "history": "^5.3.0",
+    "install": "^0.13.0",
+    "moment": "^2.29.1",
+    "navigation": "^6.0.0",
+    "nodemon": "^2.0.12",
+    "npm": "^8.5.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-native": "^0.67.4",
+    "react-native-web": "^0.17.7",
+    "react-router-dom": "^6.2.2",
+    "react-script": "^2.0.5",
+    "react-scripts": "^5.0.0",
+    "simple-login-form": "^1.1.6",
+    "survey-angular": "^1.9.19",
+    "survey-jquery": "^1.9.19",
+    "survey-react": "^1.9.19",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "devStart": "nodemon src/server.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend_swe-matcher",
+  "main": "server.js",
+  "scripts": {
+    "test": "test-be",
+    "devStart": "nodemon server.js"
+  },
+  "author": "sulkes and watson",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "request": "^2.88.2"
+  }
+}

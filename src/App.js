@@ -1,62 +1,64 @@
 import { useCallback } from 'react';
+import React, { Component } from "react";
+import { BrowserRouter, Route, Routes, Link, Redirect} from "react-router-dom";
 
 import 'survey-react/modern.min.css';
-// import 'survey-react/survey.min.css';
 import { Survey, StylesManager, Model } from 'survey-react';
+import Welcome from './components/Welcome';
+import Question from './components/Basic_Questions';
 
 StylesManager.applyTheme("modern");
 
-const surveyJson = {
-  elements: [
-  {
-    name: "FirstName",
-    title: "Enter your first name:",
-    type: "text"
-  }, 
-  {
-    name: "LastName",
-    title: "Enter your last name:",
-    type: "text"
-  }, 
-  {
-    name: "Year",
-    title: "Select your year in school",
-    type: "dropdown",
-    choices: ["1st year", "2nd year", "3rd year", "4th year", "5th year", "Graduate student"]
-  },
-  {
-    name: "Department",
-    title: "Select your department",
-    type: "dropdown",
-    choices: ["Accounting", "Agricultural and Life Sciences", "Arts","Business", 
-    "Construction", "Design", "Education", "Engineering", "Health and Human Performance", 
-    "Journalism", "Liberal Arts and Sciences", "Natural Resources and Environment", 
-    "Nursing", "Public Health", "Other"]
-  },
-  {
-    name: "Email",
-    title: "Enter your ufl email address:",
-    type: "text"
-  } ]
-};
+class  App extends Component {
 
-function App() {
-  const survey = new Model(surveyJson);
-  const alertResults = useCallback((sender) => {
-    const results = JSON.stringify(sender.data);
-    alert(results);
-  }, []);
 
-  survey.onComplete.add(alertResults);
 
-  return (
-    <div className="App">
-      <h1>MatchMakers</h1>
-      <h2>Please complete the following questions</h2>
-      <Survey model={survey} />
-    </div>
-  );
 
-}
 
-export default App;
+
+
+
+
+
+
+
+
+
+
+  /*
+state = {
+    data: null
+  };
+
+  componentDidMount() {
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.express }))
+      .catch(err => console.log(err));
+  }
+    // fetching the GET route from the Express server which matches the GET route from server.js
+  callBackendAPI = async () => {
+    const response = await fetch('/express_backend');
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message) 
+    }
+    return body;
+  };
+
+
+*/
+    render() {
+      return (      
+         <div>
+              <Routes>
+              <Route path="/" element={<Welcome />}></Route>
+              <Route path="/survey" element={<Question />}></Route>
+             </Routes>
+        </div>
+      );
+    }
+  }
+   
+  export default App;
+
