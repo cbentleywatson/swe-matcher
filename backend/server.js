@@ -3,8 +3,73 @@ var request = require("request");
 const path = require('path');
 var router =express.Router();
 const app = express();
-//app.set("view engine", "ejs")
 const port = process.env.PORT || 5000; // previously this was 3000
+app.set('port', port)
+
+
+const firebase = require("firebase");
+require("firebase/firestore");
+
+firebase.initializeApp({
+    apiKey: "AIzaSyAbsyhPmWwBkwxihBLXU-rRd2JAHa-SYI0",
+    authDomain: "swe-matcher.firebaseapp.com",
+    projectId: "swe-matcher"
+  });
+
+var db = firebase.firestore();
+
+
+
+app.route('/test-post')
+/* Basic Tests*/
+.post(function(req,res){
+  console.log("post found");
+  res.send("Posted!")
+});
+
+router.get('/test-get/:name', function(req, res) {
+  res.send('hello ' + req.params.name + '!');
+});
+
+app.route('/survey-results-post')
+/* Basic Tests*/
+.post(function(req,res){
+  console.log("survey results input");
+  var survey_results = req.body;
+  var cur_results =[survey_results];
+
+  cur_results.forEach(function(obj) {
+    db.collection("users").add({
+        FirstName : obj.FirstName,
+        LastName: obj.LastName,
+        Year: obj.Year,
+        Department: obj.Department,
+        Email: obj.Email
+    }).then(function(docRef) {
+        console.log("Added a user");
+    })
+    .catch(function(error) {
+        console.error("Error adding user: ", error);
+    });
+
+
+
+
+
+  res.send("Posted!")
+});
+
+
+/* Backend proper */
+router.get('/match/id', function(req, res) {
+  res.send('hello ' + req.params.name + '!');
+});
+
+
+
+    // apply the routes to our application
+app.use('/', router);
+  
 
 /*
   callBackendAPI = async () => {
@@ -24,22 +89,8 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 */
-app.route('/survey-results-post')
-
-.post(function(req,res){
-  console.log("post found");
-  res.send("Posted!")
-});
 
 
-
-    router.get('/hello/:name', function(req, res) {
-        res.send('hello ' + req.params.name + '!');
-    });
-
-    // apply the routes to our application
-    app.use('/', router);
-  
 //app.get("/", (req,res)=>{
 //	console.log("in root")
   // Correctly finds the html file...

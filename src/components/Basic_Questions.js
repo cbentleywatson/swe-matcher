@@ -10,6 +10,105 @@ import{axios} from 'axios' ;
 StylesManager.applyTheme("modern");
 
 
+/*
+//fetch('http://localhost:5000/survey-results-post')
+fetch('http://example.com/movies.json')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+*/
+
+
+
+/*
+ const data = {firstName : 'fred'};
+  //axios.post('/survey-results-post', data);
+      axios({
+  method: 'post',
+  url: '/survey-results-post',
+  data: {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+  })
+  console.log(JSON.stringify)
+
+*/
+
+/*
+const data = { username: 'example' };
+
+fetch('https://example.com/profile', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+*/
+alert("before feftch");
+const data = { username: 'example' };
+//fetch('https://example.com/profile', {
+fetch('http://localhost/survey-results-post', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'React POST Request Example' })
+    };
+    fetch('https://reqres.in/invalid-url', requestOptions)
+        .then(async response => {
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson && await response.json();
+
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
+
+            this.setState({ postId: data.id })
+        })
+        .catch(error => {
+            this.setState({ errorMessage: error.toString() });
+            console.error('There was an error!', error);
+        });
+
+
+
+
+
+
+
+
+
+alert(JSON.stringify(data));
+
+
+
+
+
 
 
 
@@ -22,12 +121,14 @@ const Basic_Questions = () => {
     /*The results need to be send right here */
       
     const results = JSON.stringify(sender.data);
-
+    console.log("Result!");
   alert("before axios");
-    alert(results);
+ 
+
+  alert(results);
   }, []);
   survey.onComplete.add(alertResults);
-
+  
   return (
     <div className="Basic">
      <h1> <center>MatchMakers</center></h1>
