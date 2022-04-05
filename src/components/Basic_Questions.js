@@ -179,7 +179,7 @@ var surveyJSON = {
         ]
       }, 
       
-      {\ //======second page -> Availability Questions=======
+      {//======second page -> Availability Questions=======
           "title": "Availability Questions",
           "elements": [
               {
