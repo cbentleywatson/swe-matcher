@@ -179,17 +179,65 @@ var surveyJSON = {
         ]
       }, 
       
-      { //======second page -> Compatibiity Questions=======
-          "title": "Compatibility Questions",
+      {\ //======second page -> Availability Questions=======
+          "title": "Availability Questions",
           "elements": [
               {
-                name: "DaysOfWeek",
-                title: "What days of the week?",
+                name: "StudyTime",
+                title: "What is your favorite time to study/do work?",
                 type: "dropdown",
-                choices: ["Monday", "Tuesday", "Wednesday","Thursday", "Friday"]
+                choices: ["Morning", "Early Afternoon", "Late Afternoon","Nightowl"]
+              },
+              {
+                name: "Workload",
+                title: "How many hours do you spend at the library per week? ",
+                type: "dropdown",
+                choices: ["1-10", "11-20", "20+","Nightowl"]
+              },
+              {
+                name: "SimilarClass",
+                title: "What class do you want a study buddy for the most? (must write a class code)",
+                type: "text",
+              },
+              {
+                name: "Schedule",
+                title: "Do you plan your schedule every week or have a flexible schedule?",
+                type: "dropdown",
+                choices: ["Planned", "Flexible"]
               }
+
           ]
       },
+      { //======Third page -> Compatibility Questions=======
+        "title": "Compatibility Questions",
+        "elements": [
+          {
+            name: "StudySetting",
+            title: "Would you rather work with a group or one-on-one?",
+            type: "dropdown",
+            choices: ["Group", "One on one"]
+          }, 
+          {
+            name: "ProblemApproach",
+            title: "When tackling a problem, are you more theoretical or practical?",
+            type: "dropdown",
+            choices: ["Group", "One on one"]
+          },
+          {
+            name: "Outgoingness",
+            title: "Are you more extroverted and outgoing, introverted and reserved, or hold qualities of both and am ambiverted?",
+            type: "dropdown",
+            choices: ["Extroverted", "Ambiverted", "Introverted"]
+          }, 
+          {
+            name: "Planning",
+            title: "Do you plan ahead and prepare your study itinerary or do you adapt as you go and go with the flow?",
+            type: "dropdown",
+            choices: ["Plan Ahead", "Adapt as you go"]
+          }
+        ]
+        
+      }
   ]
 };
 
