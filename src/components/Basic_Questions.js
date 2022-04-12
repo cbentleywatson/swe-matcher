@@ -3,20 +3,132 @@ import { useCallback } from 'react';
 
 import { Survey, StylesManager, Model } from 'survey-react';
 import { NavLink } from 'react-router-dom';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
+import{axios} from 'axios' ;
+
 
 StylesManager.applyTheme("modern");
 
- 
-const Basic_Questions = () => {
-  const survey = new Model(surveyJSON);
-  const alertResults = useCallback((sender) => {
-    const results = JSON.stringify(sender.data);
-    /*The results need to be send right here */
 
-    alert(results);
+/*
+//fetch('http://localhost:5000/survey-results-post')
+fetch('http://example.com/movies.json')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+*/
+
+
+
+/*
+ const data = {firstName : 'fred'};
+  //axios.post('/survey-results-post', data);
+      axios({
+  method: 'post',
+  url: '/survey-results-post',
+  data: {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+  })
+  console.log(JSON.stringify)
+
+*/
+
+/*
+const data = { username: 'example' };
+
+fetch('https://example.com/profile', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+*/
+alert("before feftch");
+const data = { username: 'example' };
+//fetch('https://example.com/profile', {
+fetch('http://localhost/survey-results-post', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'React POST Request Example' })
+    };
+    fetch('https://reqres.in/invalid-url', requestOptions)
+        .then(async response => {
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson && await response.json();
+
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
+
+            this.setState({ postId: data.id })
+        })
+        .catch(error => {
+            this.setState({ errorMessage: error.toString() });
+            console.error('There was an error!', error);
+        });
+
+
+
+
+
+
+
+
+
+alert(JSON.stringify(data));
+
+
+
+
+
+
+
+
+
+const Basic_Questions = () => {
+
+
+    const survey = new Model(surveyJSON);
+    const alertResults = useCallback((sender) => {
+    /*The results need to be send right here */
+      
+    const results = JSON.stringify(sender.data);
+    console.log("Result!");
+  alert("before axios");
+ 
+
+  alert(results);
   }, []);
   survey.onComplete.add(alertResults);
-
+  
   return (
     <div className="Basic">
      <h1> <center>MatchMakers</center></h1>
@@ -67,17 +179,65 @@ var surveyJSON = {
         ]
       }, 
       
-      { //======second page -> Compatibiity Questions=======
-          "title": "Compatibility Questions",
+      {//======second page -> Availability Questions=======
+          "title": "Availability Questions",
           "elements": [
               {
-                name: "DaysOfWeek",
-                title: "What days of the week?",
+                name: "StudyTime",
+                title: "What is your favorite time to study/do work?",
                 type: "dropdown",
-                choices: ["Monday", "Tuesday", "Wednesday","Thursday", "Friday"]
+                choices: ["Morning", "Early Afternoon", "Late Afternoon","Nightowl"]
+              },
+              {
+                name: "Workload",
+                title: "How many hours do you spend at the library per week? ",
+                type: "dropdown",
+                choices: ["1-10", "11-20", "20+","Nightowl"]
+              },
+              {
+                name: "SimilarClass",
+                title: "What class do you want a study buddy for the most? (must write a class code)",
+                type: "text",
+              },
+              {
+                name: "Schedule",
+                title: "Do you plan your schedule every week or have a flexible schedule?",
+                type: "dropdown",
+                choices: ["Planned", "Flexible"]
               }
+
           ]
       },
+      { //======Third page -> Compatibility Questions=======
+        "title": "Compatibility Questions",
+        "elements": [
+          {
+            name: "StudySetting",
+            title: "Would you rather work with a group or one-on-one?",
+            type: "dropdown",
+            choices: ["Group", "One on one"]
+          }, 
+          {
+            name: "ProblemApproach",
+            title: "When tackling a problem, are you more theoretical or practical?",
+            type: "dropdown",
+            choices: ["Group", "One on one"]
+          },
+          {
+            name: "Outgoingness",
+            title: "Are you more extroverted and outgoing, introverted and reserved, or hold qualities of both and am ambiverted?",
+            type: "dropdown",
+            choices: ["Extroverted", "Ambiverted", "Introverted"]
+          }, 
+          {
+            name: "Planning",
+            title: "Do you plan ahead and prepare your study itinerary or do you adapt as you go and go with the flow?",
+            type: "dropdown",
+            choices: ["Plan Ahead", "Adapt as you go"]
+          }
+        ]
+        
+      }
   ]
 };
 
