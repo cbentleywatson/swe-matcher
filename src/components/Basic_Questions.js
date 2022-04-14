@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { Survey, StylesManager, Model } from 'survey-react';
 import { NavLink } from 'react-router-dom';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
-import{axios} from 'axios' ;
+//import{axios} from 'axios' ;
 
 
 StylesManager.applyTheme("modern");
@@ -104,14 +104,6 @@ fetch('http://localhost/survey-results-post', {
 
 
 alert(JSON.stringify(data));
-
-
-
-
-
-
-
-
 
 const Basic_Questions = () => {
 
@@ -222,10 +214,7 @@ var surveyJSON = {
       },
       
 
-              }
 
-          ]
-      },
       { //======Third page -> Compatibility Questions=======
         "title": "Compatibility Questions",
         "elements": [
