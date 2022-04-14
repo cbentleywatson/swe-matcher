@@ -177,33 +177,51 @@ var surveyJSON = {
               type: "text"
           }
         ]
-      }, 
-      
+      },
+
       {//======second page -> Availability Questions=======
           "title": "Availability Questions",
           "elements": [
               {
-                name: "StudyTime",
-                title: "What is your favorite time to study/do work?",
-                type: "dropdown",
-                choices: ["Morning", "Early Afternoon", "Late Afternoon","Nightowl"]
+                  name: "StudyTime",
+                  title: "What days of the week are you available?",
+                  type: "checkbox",
+                  choices: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
               },
               {
-                name: "Workload",
-                title: "How many hours do you spend at the library per week? ",
-                type: "dropdown",
-                choices: ["1-10", "11-20", "20+","Nightowl"]
+                  name: "StudyTime",
+                  title: "What is your favorite time to study/do work?",
+                  type: "checkbox",
+                  choices: ["Morning", "Early Afternoon", "Late Afternoon","Nightowl"]
               },
               {
-                name: "SimilarClass",
-                title: "What class do you want a study buddy for the most? (must write a class code)",
-                type: "text",
+                  name: "Workload",
+                  title: "How many hours do you spend at the library per week? ",
+                  type: "dropdown",
+                  choices: ["1-10", "11-20", "20+"]
               },
               {
-                name: "Schedule",
-                title: "Do you plan your schedule every week or have a flexible schedule?",
-                type: "dropdown",
-                choices: ["Planned", "Flexible"]
+                  name: "SimilarClass",
+                  title: "What class do you want a study buddy for the most? (must write a class code)",
+                  type: "text",
+              },
+              {
+                  name: "Virtual",
+                  title: "Do you have a preference to meet in-person or on zoom?",
+                  type: "checkbox",
+                  choices: ["Zoom", "In-Person"]
+              },
+              {
+                  name: "Location",
+                  title: "If in-person, what study spots would you want to go to?",
+                  type: "checkbox",
+                  choices: ["Marston", "Library West", "Coffee Shop", "Classroom Hall", "Law Library"]
+              },
+
+          ]
+      },
+      
+
               }
 
           ]
