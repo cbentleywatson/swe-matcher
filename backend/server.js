@@ -69,7 +69,7 @@ router.get('/match/id', function(req, res) {
 
     // apply the routes to our application
 app.use('/', router);
-  
+});
 
 /*
   callBackendAPI = async () => {
@@ -145,5 +145,3 @@ app.get('/express_backend', (req, res) => { //Line 9
 */
 
 /* Starts the server listening on port 3000  */
-app.listen(5000)
-console.log("Hello")
