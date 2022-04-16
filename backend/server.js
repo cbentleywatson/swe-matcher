@@ -4,9 +4,9 @@ const path = require('path');
 var router =express.Router();
 const app = express();
 const port = process.env.PORT || 5000; // previously this was 3000
-app.set('port', port)
+app.set('port', port);
 
-
+/*
 const firebase = require("firebase");
 require("firebase/firestore");
 
@@ -17,22 +17,73 @@ firebase.initializeApp({
   });
 
 var db = firebase.firestore();
-
+*/
 
 
 app.route('/test-post')
 /* Basic Tests*/
 .post(function(req,res){
   console.log("post found");
-  res.send("Posted!")
+  res.send("Posted!");
 });
 
 router.get('/test-get/:name', function(req, res) {
   res.send('hello ' + req.params.name + '!');
+  console.log("got get");
 });
 
-app.route('/survey-results-post')
+
+
+// WORKING!!!! -- Gives the string from get request
+// The string can then be parsed and manipulated
+
+router.get('/simplest/:name', function(req, res) {
+    
+    //var user =JSON.parse(req.params.name);
+    res.send('hello ' + req.params.name + '!');
+    console.log("first name: " + req.params.name );
+   // console.log("last name: "+ req.params.last);
+  });
+
+router.get('/test-longer/:name', function(req, res) {
+    
+    var user =JSON.parse(req.params.name);
+    res.send('hello ' + req.params.name + '!' + " From user obj: "+ user.fn);
+    console.log("first name:" + req.params.name );
+   // console.log("last name: "+ req.params.last);
+  });
+
+  /// working
+  router.get('/submit-user-results:results', function(req, res) {
+    
+    var user =JSON.parse(req.params.name);
+    res.send('hello ' + req.params.results + '!' + " From user obj: "+ user.fn);
+    console.log("first name:" + req.params.results );
+   // console.log("last name: "+ req.params.last);
+  });
+
+
+
+/*
+const bodyParser = require("body-parser");
+
+router.post(‘/login’,(req, res) => {
+    var user_name = req.body.user;
+    var password = req.body.password;
+    console.log(“User name = “+user_name+”, password is “+password);
+    res.end(“yes”);
+    });
+*/
+
+
+
+
+
+
 /* Basic Tests*/
+/*
+app.route('/survey-results-post')
+
 .post(function(req,res){
   console.log("survey results input");
   var survey_results = req.body;
@@ -51,19 +102,19 @@ app.route('/survey-results-post')
     .catch(function(error) {
         console.error("Error adding user: ", error);
     });
-
-
-
-
-
   res.send("Posted!")
 });
-
+*/
 
 /* Backend proper */
 router.get('/match/id', function(req, res) {
   res.send('hello ' + req.params.name + '!');
 });
+
+
+router.get('/response', function(req, res) {
+    res.send('hello ' + req.params.name + '!');
+  });
 
 
 
@@ -75,7 +126,6 @@ app.use('/', router);
   callBackendAPI = async () => {
     const response = await fetch('/express_backend');
     const body = await response.json();
-
     if (response.status !== 200) {
       throw Error(body.message) 
     }
@@ -84,7 +134,6 @@ app.use('/', router);
 */
 /*x
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -137,13 +186,11 @@ app.get("/", (req,res)=>{
 
 
 /*
-
 app.get('/express_backend', (req, res) => { //Line 9
   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
 });
-
 */
 
 /* Starts the server listening on port 3000  */
-app.listen(5000)
-console.log("Hello")
+console.log("Hello");
+app.listen(5000);

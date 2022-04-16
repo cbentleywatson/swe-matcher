@@ -5,10 +5,68 @@ import { Survey, StylesManager, Model } from 'survey-react';
 import { NavLink } from 'react-router-dom';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 //import{axios} from 'axios' ;
-
+const axios = require('axios');
 
 StylesManager.applyTheme("modern");
 
+alert("Basic Questions Start");
+
+const run_reset = () => {
+  alert("start axios get");
+  axios.get('http://localhost:5000/simplest/from_front_end')
+        .then(res => {
+             return res.json()
+        }).then(response => {
+              console.log("Sent From the test");
+              //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
+         })
+}
+
+
+
+
+// Make the get request send the user survey data
+/*
+fetchUser = () => {
+  axios.get('http://awesomeserver/users.username')
+        .then(res => {
+             return res.json()
+        }).then(response => {
+              this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
+         })
+}
+*/
+
+
+function fetchUser() {
+  alert("Fetch user funct");
+  axios.get('http://localhost:5000/simplest/from_front_end')
+        .then(res => {
+          alert("in res");
+             return res.json();
+        }).then(response => {
+               alert("in response");
+              console.log("Sent From the test");
+              //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
+         })
+}
+
+fetchUser();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Start Of Back end team script 
 
 /*
 //fetch('http://localhost:5000/survey-results-post')
@@ -17,109 +75,121 @@ fetch('http://example.com/movies.json')
   .then(data => console.log(data));
 
 */
-
-
-
-/*
- const data = {firstName : 'fred'};
-  //axios.post('/survey-results-post', data);
-      axios({
-  method: 'post',
-  url: '/survey-results-post',
-  data: {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
+const user_data_test_submit = async (e) => {
+  // name = "kyle"
+  //email = "simpl@gmail.com"
+  //const handleOnSubmit = async (e) => {
+alert("Began user_data_test_submit");
+  e.preventDefault();
+  let result = await fetch(
+    ' http://localhost:5000/register', {
+        method: "post",
+        body: body,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    }
+  )
+  result = await result.json();
+  alert("Line 38");
+  console.warn(result);
+  if (result) {
+      alert("Data saved successfully");
+      //setEmail("");
+     // setName("");
   }
-  })
-  console.log(JSON.stringify)
+  alert("RECEIVED RESULTS FROM BACKEND")  
+  //const results = JSON.stringify(sender.data);
+  var body = "hello";
+}
+const handleOnSubmit = async(e) => {
+  alert("ran simplest");
+  fetchUser();
+  user_data_test_submit();
+  const user_data_test_submit = async (e) => {
+    // name = "kyle"
+    //email = "simpl@gmail.com"
+    //const handleOnSubmit = async (e) => {
+  alert("Began user_data_test_submit");
+    e.preventDefault();
+    let result = await fetch(
+      ' http://localhost:5000/register', {
+          method: "post",
+          body: body,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+      }
+    )
+    result = await result.json();
+    alert("Line 38");
+    console.warn(result);
+    if (result) {
+        alert("Data saved successfully");
+        //setEmail("");
+       // setName("");
+    }
+    alert("RECEIVED RESULTS FROM BACKEND")  
+    //const results = JSON.stringify(sender.data);
+    var body = "hello";
+  }
 
-*/
 
-/*
-const data = { username: 'example' };
 
-fetch('https://example.com/profile', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-})
-.then(response => response.json())
-.then(data => {
-  console.log('Success:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
-*/
-alert("before feftch");
-const data = { username: 'example' };
-//fetch('https://example.com/profile', {
-fetch('http://localhost/survey-results-post', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-})
-.then(response => response.json())
-.then(data => {
-  console.log('Success:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
 
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'React POST Request Example' })
-    };
-    fetch('https://reqres.in/invalid-url', requestOptions)
-        .then(async response => {
-            const isJson = response.headers.get('content-type')?.includes('application/json');
-            const data = isJson && await response.json();
+}
 
-            // check for error response
-            if (!response.ok) {
-                // get error message from body or default to response status
-                const error = (data && data.message) || response.status;
-                return Promise.reject(error);
-            }
 
-            this.setState({ postId: data.id })
-        })
-        .catch(error => {
-            this.setState({ errorMessage: error.toString() });
-            console.error('There was an error!', error);
-        });
+
+// End of backend team work
 
 
 
 
 
 
+//alert(JSON.stringify(data));
 
-
-
-alert(JSON.stringify(data));
-
-const Basic_Questions = () => {
+const Basic_Questions =  () => {
 
 
     const survey = new Model(surveyJSON);
     const alertResults = useCallback((sender) => {
     /*The results need to be send right here */
       
-    const results = JSON.stringify(sender.data);
-    console.log("Result!");
-  alert("before axios");
+      const results = JSON.stringify(sender.data);
+      console.log("Result!");
  
+      //const results = JSON.stringify(sender.data);
+      // Beginning of functions from the test set up
+      
+      /*
+      alert("Begin copied lines")
+      e.preventDefault();
+      let result = await fetch(
+        ' http://localhost:5000/register', {
+            method: "post",
+            body: "hell0",
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        }
+      )
+      result = await result.json();
+      console.warn(result);
+      if (result) {
+          alert("Data saved successfully");
+          //setEmail("");
+         // setName("");
+      }
+      */
+      // End of pulled functions
 
-  alert(results);
-  }, []);
-  survey.onComplete.add(alertResults);
+      alert(results);
+    }, []);
+  // Start of backend call!
+  //const s = sender;
+  survey.onComplete.add(handleOnSubmit);
   
   return (
     <div className="Basic">
