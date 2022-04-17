@@ -52,6 +52,7 @@ const Welcome = () => {
             <TouchableOpacity style={styles.profileBtn}>
                 <Text style={styles.loginText}></Text>
                 <NavLink to="/survey" >Create Profile</NavLink>
+                <NavLink to="/results" >Show Results</NavLink>
             </TouchableOpacity>
         </View>
         </div>

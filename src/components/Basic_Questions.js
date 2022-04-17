@@ -19,7 +19,6 @@ fetch('http://example.com/movies.json')
 */
 
 
-
 /*
  const data = {firstName : 'fred'};
   //axios.post('/survey-results-post', data);
@@ -94,13 +93,6 @@ fetch('http://localhost/survey-results-post', {
             this.setState({ errorMessage: error.toString() });
             console.error('There was an error!', error);
         });
-
-
-
-
-
-
-
 
 
 alert(JSON.stringify(data));

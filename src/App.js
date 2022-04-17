@@ -6,6 +6,7 @@ import 'survey-react/modern.min.css';
 import { Survey, StylesManager, Model } from 'survey-react';
 import Welcome from './components/Welcome';
 import Question from './components/Basic_Questions';
+import Results from './components/Show_Results';
 
 StylesManager.applyTheme("modern");
 
@@ -41,6 +42,7 @@ state = {
               <Routes>
               <Route path="/" element={<Welcome />}></Route>
               <Route path="/survey" element={<Question />}></Route>
+              <Route path="/results" element={<Results />}></Route>
              </Routes>
         </div>
       );
