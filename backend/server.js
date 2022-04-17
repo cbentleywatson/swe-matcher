@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const express = require("express");
 var request = require("request");
 const path = require('path');
@@ -9,6 +10,41 @@ const port = process.env.PORT || 5000; // previously this was 3000
 app.set('port', port);
 
 app.use(cors())
+
+mongoose.connect('mongodb://localhost:27017/',{
+	dbname: 'my-dbname',
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+	},err => err ? console.log(err) :
+	console.log(' connected to my-dbname database'));
+
+  const userSchema = new mongoose.Schema({
+	name : {
+		type: String,
+		required : true,
+	},
+	date: {
+		type: Date,
+		default: Date.now,
+	},
+
+});
+
+const User = mongoose.model('users', userSchema);
+User.createIndexes();
+// end of db set up??
+app.get('/test-mongo', (req,resp) =>{
+	resp.send("app is working");
+
+});
+
+
+
+
+
+
+
+
 
 app.get('/simplest/:name', function (req, res, next) {
   //res.json({msg: 'This is CORS-enabled for all origins!'})
