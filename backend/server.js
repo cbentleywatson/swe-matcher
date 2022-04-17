@@ -3,8 +3,21 @@ var request = require("request");
 const path = require('path');
 var router =express.Router();
 const app = express();
+
+var cors = require('cors')
 const port = process.env.PORT || 5000; // previously this was 3000
 app.set('port', port);
+
+app.use(cors())
+
+app.get('/simplest/:name', function (req, res, next) {
+  //res.json({msg: 'This is CORS-enabled for all origins!'})
+
+    //res.send({ title: 'GeeksforGeeks' });
+    console.log("first name: " + req.params.name );
+    res.send("first name: " + req.params.name );
+   
+})
 
 /*
 const firebase = require("firebase");
@@ -27,6 +40,15 @@ app.route('/test-post')
   res.send("Posted!");
 });
 
+app.route('/simplest2')
+/* Basic Tests*/
+.get(function(req,res){
+  console.log("post found");
+  res.send("Posted!");
+});
+
+
+
 router.get('/test-get/:name', function(req, res) {
   res.send('hello ' + req.params.name + '!');
   console.log("got get");
@@ -36,14 +58,53 @@ router.get('/test-get/:name', function(req, res) {
 
 // WORKING!!!! -- Gives the string from get request
 // The string can then be parsed and manipulated
-
-router.get('/simplest/:name', function(req, res) {
+/*
+router.get('/simplest/:name', (req, res) => {
     
     //var user =JSON.parse(req.params.name);
-    res.send('hello ' + req.params.name + '!');
+    //res.send('hello ' + req.params.name + '!');
+    //res.send({ title: 'GeeksforGeeks' });
+    
+    res.send("From the simplest function");
     console.log("first name: " + req.params.name );
    // console.log("last name: "+ req.params.last);
   });
+*/
+
+
+/*
+app.route('/simplest/:name').get(function(){
+    
+  //var user =JSON.parse(req.params.name);
+  //res.send('hello ' + req.params.name + '!');
+  //res.send({ title: 'GeeksforGeeks' });
+  
+  res.send("From the simplest function");
+  console.log("first name: " + req.params.name );
+ // console.log("last name: "+ req.params.last);
+});
+
+('/simplest/:name', (req, res) => {
+    
+  //var user =JSON.parse(req.params.name);
+  //res.send('hello ' + req.params.name + '!');
+  //res.send({ title: 'GeeksforGeeks' });
+  
+  res.send("From the simplest function");
+  console.log("first name: " + req.params.name );
+ // console.log("last name: "+ req.params.last);
+});
+
+*/
+
+
+
+
+
+
+
+
+
 
 router.get('/test-longer/:name', function(req, res) {
     

@@ -6,12 +6,14 @@ import { NavLink } from 'react-router-dom';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 //import{axios} from 'axios' ;
 const axios = require('axios');
-
+console.log("log checlk");
 StylesManager.applyTheme("modern");
 
-alert("Basic Questions Start");
-
-const run_reset = () => {
+//alert("Basic Questions Start"); working test funct
+/**
+ *
+ */ 
+/*const run_reset = () => {
   alert("start axios get");
   axios.get('http://localhost:5000/simplest/from_front_end')
         .then(res => {
@@ -23,7 +25,7 @@ const run_reset = () => {
 }
 
 
-
+*/
 
 // Make the get request send the user survey data
 /*
@@ -40,7 +42,7 @@ fetchUser = () => {
 
 function fetchUser() {
   alert("Fetch user funct");
-  axios.get('http://localhost:5000/simplest/from_front_end')
+  axios.get('http://localhost:5000/simplest/fetch_user_response_test')
         .then(res => {
           alert("in res");
              return res.json();
@@ -51,7 +53,7 @@ function fetchUser() {
          })
 }
 
-fetchUser();
+//fetchUser();
 
 
 
@@ -104,6 +106,13 @@ alert("Began user_data_test_submit");
 }
 const handleOnSubmit = async(e) => {
   alert("ran simplest");
+  
+  // Attempting to get the results data
+  //const results = JSON.stringify(sender.data);
+  console.log("Result!");
+  
+  
+  alert("before axios");
   fetchUser();
   user_data_test_submit();
   const user_data_test_submit = async (e) => {
@@ -113,7 +122,7 @@ const handleOnSubmit = async(e) => {
   alert("Began user_data_test_submit");
     e.preventDefault();
     let result = await fetch(
-      ' http://localhost:5000/register', {
+      ' http://localhost:5000/simplest/handle_on_submit', {
           method: "post",
           body: body,
           headers: {
@@ -154,12 +163,100 @@ const Basic_Questions =  () => {
 
 
     const survey = new Model(surveyJSON);
+
+
+
+    const alert_and_send = useCallback((sender) => {
+      /*The results need to be send right here */
+        // e.preventDefault();
+        const results = JSON.stringify(sender.data);
+        console.log("Result!");
+        alert("THIS is Alert and send, which merges the send and results functions");
+        
+     
+        
+        
+        //alert(results);
+        //alert("Fetch user funct");
+        
+        //const res = await axios.get('https://example.com/someApi');
+        
+         axios.get('http://localhost:5000/simplest/'+ results)
+              .then( (response) => {
+              //alert("in response");
+              console.log("Sent From the test");
+              console.log(response.data);
+              alert(response);
+              //alert("axios response");
+                
+              //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
+         })
+        .catch((error) =>{
+          alert("Error! " + error);
+          //alert("request " + request);
+          console.log(error);
+        } ) 
+      }, []);
+
+/*
+         axios({
+          method: 'get',
+          url: 'http://localhost:5000/simplest/'+ results,
+          timeout: 8000 // Let's say you want to wait at least 8 seconds
+
+        })
+        .then(function (response) {
+              console.log(response);
+              alert(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+*/
+
+
+
+
+
+
+
+
+
+        //const results = JSON.stringify(sender.data);
+        // Beginning of functions from the test set up
+        
+        /*
+        alert("Begin copied lines")
+        e.preventDefault();
+        let result = await fetch(
+          ' http://localhost:5000/register', {
+              method: "post",
+              body: "hell0",
+              headers: {
+                'Content-Type': 'application/json'
+              }
+          }
+        )
+        result = await result.json();
+        console.warn(result);
+        if (result) {
+            alert("Data saved successfully");
+            //setEmail("");
+           // setName("");
+        }
+        */
+        // End of pulled functions
+  
+    //    alert(results);
+    
+
     const alertResults = useCallback((sender) => {
     /*The results need to be send right here */
       
       const results = JSON.stringify(sender.data);
       console.log("Result!");
- 
+//      alert(" results "  +results);
+//      alert(results);
       //const results = JSON.stringify(sender.data);
       // Beginning of functions from the test set up
       
@@ -185,12 +282,15 @@ const Basic_Questions =  () => {
       */
       // End of pulled functions
 
-      alert(results);
+  //    alert(results);
     }, []);
   // Start of backend call!
   //const s = sender;
-  survey.onComplete.add(handleOnSubmit);
-  
+  //survey.onComplete.add(handleOnSubmit);
+  //survey.onComplete.add(alertResults);
+  survey.onComplete.add(alert_and_send);
+  //survey.onComplete.add(handleOnSubmit);
+
   return (
     <div className="Basic">
      <h1> <center>MatchMakers</center></h1>
