@@ -171,7 +171,7 @@ const Basic_Questions =  () => {
         // e.preventDefault();
         const results = JSON.stringify(sender.data);
         console.log("Result!");
-        alert("THIS is Alert and send, which merges the send and results functions");
+        //alert("THIS is Alert and send, which merges the send and results functions");
         
      
         
@@ -186,7 +186,7 @@ const Basic_Questions =  () => {
               //alert("in response");
               console.log("Sent From the test");
               console.log(response.data);
-              alert(response);
+          //    alert(response);
               //alert("axios response");
                 
               //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
