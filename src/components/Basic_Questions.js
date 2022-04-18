@@ -181,7 +181,7 @@ var surveyJSON = {
               {
                   name: "Workload",
                   title: "How many hours do you spend at the library per week? ",
-                  type: "dropdown",
+                  type: "checkbox",
                   choices: ["1-10", "11-20", "20+"]
               },
               {
