@@ -7,7 +7,7 @@ const app = express();
 const fs = require('fs')
 //const fs = require('browserify-fs')
 let data = "Hello and Welcome to linuxhint.com"
-
+const string_array = [];
 const users_as_java_script_objects = [];
 try {
   // read contents of the file
@@ -18,11 +18,42 @@ try {
 
   // print all lines
   lines.forEach((line) => {
-      console.log(line);
-      users_as_java_script_objects.push(JSON.parse(line));
+    if(line.length>7){
+     
+      
+      if(line.endsWith("}")){
+
+        string_array.push(line);
+        console.log(line); 
+      }else{
+        console.log("Does Not End with }")
+      }
+    }else{
+      console.log("JSON too Shot");
+    }
+   
+    /*
+    is_json =true; 
+    try {
+      object = JSON.parse(json);
+  } catch (error) {
+      is_json = false;
+      console.log("Invalid JSON string");
+  }
+    if(is_json){
+      
+    }*/
+   // users_as_java_script_objects.push(JSON.parse(line));
+  //users_as_java_script_objects.push(JSON.parse(line));
   });
+
 } catch (err) {
   console.error(err);
+}
+for(let i = 0; i < string_array.length; i++){
+  console.log(string_array[i]);
+  users_as_java_script_objects.push(JSON.parse(string_array[i]));
+    
 }
 
 
@@ -82,15 +113,22 @@ app.get('/simplest/:name', function (req, res, next) {
   //res.json({msg: 'This is CORS-enabled for all origins!'})
 
     //res.send({ title: 'GeeksforGeeks' });
-    console.log("first name: " + req.params.name );
-    res.send("first name: " + req.params.name );
+    console.log(req.params.name );
+    res.send("first+name: " +req.params.name );
     const content = req.params.name
     const new_user = JSON.parse(content)
     users_as_java_script_objects.push(new_user);
-   var user= User(new_user);
-users.push(user);
-user.index=users.length-1;
-    fs.appendFile('file.log', content, err => {
+    //var user= User(new_user);
+//    users.push(user);
+
+
+
+  //user.index=users.length-1;
+  let addend ="";
+  if(string_array.length>0){
+    addend ="\n"
+  }
+    fs.appendFile('file.log', (addend+content), err => {
       if (err) {
         console.error(err)
         return
@@ -98,6 +136,31 @@ user.index=users.length-1;
       //done!
     })   
 })
+
+
+app.get('/sort_1/:name', function (req, res, next) {
+  //res.json({msg: 'This is CORS-enabled for all origins!'})
+
+    //res.send({ title: 'GeeksforGeeks' });
+    console.log(req.params.name );
+    res.send(req.params.name );
+    const content = req.params.name
+    const new_user = JSON.parse(content)
+    users_as_java_script_objects.push(new_user);
+    //var user= User(new_user);
+//    users.push(user);
+
+})
+
+
+
+
+
+
+
+
+
+
 
 /*
 const firebase = require("firebase");
