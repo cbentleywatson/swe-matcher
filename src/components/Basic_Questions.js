@@ -357,27 +357,17 @@ var surveyJSON = {
                   choices: ["Morning", "Early Afternoon", "Late Afternoon","Nightowl"]
               },
               {
-                  name: "Workload",
+                  name: "StudyTime",
                   title: "How many hours do you spend at the library per week? ",
                   type: "dropdown",
                   choices: ["1-10", "11-20", "20+"]
               },
-              {
-                  name: "SimilarClass",
-                  title: "What class do you want a study buddy for the most? (must write a class code)",
-                  type: "text",
-              },
-              {
-                  name: "Virtual",
-                  title: "Do you have a preference to meet in-person or on zoom?",
-                  type: "checkbox",
-                  choices: ["Zoom", "In-Person"]
-              },
+              
               {
                   name: "Location",
-                  title: "If in-person, what study spots would you want to go to?",
+                  title: "Where would you like to meet to study?",
                   type: "checkbox",
-                  choices: ["Marston", "Library West", "Coffee Shop", "Classroom Hall", "Law Library"]
+                  choices: ["Zoom", "Marston", "Library West", "Coffee Shop", "Classroom Hall", "Law Library"]
               },
 
           ]
@@ -389,6 +379,11 @@ var surveyJSON = {
         "title": "Compatibility Questions",
         "elements": [
           {
+            name: "SimilarClass",
+            title: "What class do you want a study buddy for the most? (must write a class code)",
+            type: "text",
+        },
+          {
             name: "StudySetting",
             title: "Would you rather work with a group or one-on-one?",
             type: "dropdown",
@@ -398,7 +393,7 @@ var surveyJSON = {
             name: "ProblemApproach",
             title: "When tackling a problem, are you more theoretical or practical?",
             type: "dropdown",
-            choices: ["Group", "One on one"]
+            choices: ["Theoretical", "Practical"]
           },
           {
             name: "Outgoingness",
