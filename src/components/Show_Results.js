@@ -193,27 +193,27 @@ export default function Show_Results() {
 
   return (
     <div className="App">
+        <h1> <center>MatchMakers - Results</center></h1>
     <div className="user-filter">{`Current Selection: ${selectedFilter}`}</div>
-      
-      <div>Filter by Year</div>
+    <h3>Filter by:</h3>
       <div id="year-options" onClick={handleFilterChange}>
         <div
           className={selectedFilter === "Compatibility" ? "active-option" : "filter-option"}
           id="Compatibility"
-        >
-          Compatibility
+        > 
+          <h4><center>Compatibility</center></h4>
         </div>
         <div
           className={selectedFilter === "Availability" ? "active-option" : "filter-option"}
           id="Availability"
         >
-          Availability
+          <h4><center>Availability</center></h4>
         </div>
         <div
           className={selectedFilter === "Combined" ? "active-option" : "filter-option"}
           id="Combined"
         >
-          Combined
+          <h4><center>Combined</center></h4>
         </div>
       </div>
 

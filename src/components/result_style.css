@@ -15,20 +15,22 @@
     width: 200px;
     height: 180px;
   }
-  #car-list {
+  #user-list {
     display: grid;
-    gap: 20px;
+    gap: 50px;
     min-height: 480px;
     grid-template-columns: repeat(3, 1fr);
   }
   .car-item {
     display: flex;
-    height: 200px;
+    font-size: 30px;
+    height: 300px;
     flex-direction: column;
     background-color: #fafafa;
     border: 1px solid black;
-    padding: 10px;
+    padding: 20px;
     gap: 5px;
+    
   }
   .filter-option,
   .active-option {
@@ -53,4 +55,5 @@
     display: flex;
     justify-content: center;
     transition: all 0.1s;
+    
   }
