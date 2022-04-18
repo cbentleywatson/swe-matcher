@@ -15,8 +15,8 @@ StylesManager.applyTheme("modern");
 fetch('http://example.com/movies.json')
   .then(response => response.json())
   .then(data => console.log(data));
-*/
 
+*/
 
 
 /*
@@ -31,10 +31,12 @@ fetch('http://example.com/movies.json')
   }
   })
   console.log(JSON.stringify)
+
 */
 
 /*
 const data = { username: 'example' };
+
 fetch('https://example.com/profile', {
   method: 'POST', // or 'PUT'
   headers: {
@@ -50,7 +52,7 @@ fetch('https://example.com/profile', {
   console.error('Error:', error);
 });
 */
-alert("before feftch");
+//alert("before feftch");
 const data = { username: 'example' };
 //fetch('https://example.com/profile', {
 fetch('http://localhost/survey-results-post', {
@@ -93,14 +95,7 @@ fetch('http://localhost/survey-results-post', {
         });
 
 
-
-
-
-
-
-
-
-alert(JSON.stringify(data));
+//alert(JSON.stringify(data));
 
 const Basic_Questions = () => {
 
@@ -110,11 +105,12 @@ const Basic_Questions = () => {
     /*The results need to be send right here */
       
     const results = JSON.stringify(sender.data);
-    console.log("Result!");
-  alert("before axios");
+    //console.log("Result!");
+    window.location.href = 'http://localhost:3000/results';
+  //alert("before axios");
  
 
-  alert(results);
+  //alert(results);
   }, []);
   survey.onComplete.add(alertResults);
   
@@ -184,17 +180,27 @@ var surveyJSON = {
                   choices: ["Morning", "Early Afternoon", "Late Afternoon","Nightowl"]
               },
               {
-                  name: "StudyTime",
+                  name: "Workload",
                   title: "How many hours do you spend at the library per week? ",
                   type: "checkbox",
                   choices: ["1-10", "11-20", "20+"]
               },
-              
+              {
+                  name: "SimilarClass",
+                  title: "What class do you want a study buddy for the most? (must write a class code)",
+                  type: "text",
+              },
+              {
+                  name: "Virtual",
+                  title: "Do you have a preference to meet in-person or on zoom?",
+                  type: "checkbox",
+                  choices: ["Zoom", "In-Person"]
+              },
               {
                   name: "Location",
-                  title: "Where would you like to meet to study?",
+                  title: "If in-person, what study spots would you want to go to?",
                   type: "checkbox",
-                  choices: ["Zoom", "Marston", "Library West", "Coffee Shop", "Classroom Hall", "Law Library"]
+                  choices: ["Marston", "Library West", "Coffee Shop", "Classroom Hall", "Law Library"]
               },
 
           ]
@@ -205,11 +211,6 @@ var surveyJSON = {
       { //======Third page -> Compatibility Questions=======
         "title": "Compatibility Questions",
         "elements": [
-          {
-            name: "SimilarClass",
-            title: "What class do you want a study buddy for the most? (must write a class code)",
-            type: "text",
-        },
           {
             name: "StudySetting",
             title: "Would you rather work with a group or one-on-one?",

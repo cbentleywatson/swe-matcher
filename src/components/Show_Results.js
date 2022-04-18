@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./result_style.css";
 
 export default function Show_Results() {
-    const Data1 = [
+    const DataC = [
         {
           firstName: "Lindsay",
           lastName: "Lord",
@@ -51,7 +51,7 @@ export default function Show_Results() {
         
     ];
 
-    const Data2 = [
+    const DataA = [
         {
             firstName: "Maya",
             lastName: "Harris",
@@ -99,7 +99,7 @@ export default function Show_Results() {
           }
         
       ];
-      const Data3 = [
+      const DataT = [
         {
             firstName: "Joe",
             lastName: "Sulkes",
@@ -148,7 +148,7 @@ export default function Show_Results() {
         
       ];
   // List of all cars satisfing all the filters
-  const [filteredList, setFilteredList] = useState(Data1);
+  const [filteredList, setFilteredList] = useState(DataT);
   // Selected filter
   const [selectedFilter, setSelectedFilter] = useState();
 
@@ -162,15 +162,15 @@ export default function Show_Results() {
     var filteredUsers;
     if (selectedFilter == "Compatibility")
     {
-        filteredUsers = Data1;
+        filteredUsers = DataC;
     }
     else if (selectedFilter == "Availability")
     {
-        filteredUsers = Data2;
+        filteredUsers = DataA;
     }
     else
     {
-        filteredUsers = Data3;
+        filteredUsers = DataT;
     }
     return filteredUsers;
   };
@@ -187,7 +187,7 @@ export default function Show_Results() {
   };
 
   useEffect(() => {
-    var filteredData = filterByCategory(Data1);
+    var filteredData = filterByCategory(DataT);
     setFilteredList(filteredData);
   }, [selectedFilter]);
 
