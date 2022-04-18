@@ -5,7 +5,7 @@
     align-items: center;
     height: 100vh;
     font-family: jetbrains-mono;
-    font-size: 20px;
+    font-size: 10px;
     align-items: center;
     text-align: center;
   }
@@ -20,9 +20,9 @@ body {
     margin: 20px;
   }
   .car-image {
-    width: 100px;
-    height: 180px;
-    text-align: center;
+    float: right;
+    width: 110px;
+    height: 110px;
   }
   #user-list {
     display: grid;
@@ -31,15 +31,20 @@ body {
     grid-template-columns: repeat(3, 1fr);
     text-align: center;
   }
+
+  .user-name {
+    float:left;
+  }
+
   .car-item {
     display: grid;
     font-family: jetbrains-mono;
-    font-size: 25px;
+    font-size: 18px;
     height: 300px;
     flex-direction: column;
     background-color: #b9db92;
     border: 3px solid black;
-    padding: 5px;
+    padding: 30px;
     gap: 5px;
     margin: 50px;
     box-shadow: 4px 12px 18px 4px rgba(0,0,0,0.2);
