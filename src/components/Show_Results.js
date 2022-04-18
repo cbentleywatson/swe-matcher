@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import "./result_style.css";
 
+const img = new Image(100, 200); // width, height
+img.src = "https://picsum.photos/200/301";
+
 export default function Show_Results() {
     const DataC = [
         {
@@ -201,26 +204,26 @@ export default function Show_Results() {
           className={selectedFilter === "Compatibility" ? "active-option" : "filter-option"}
           id="Compatibility"
         > 
-          <h4><center>Compatibility</center></h4>
+          Compatibility
         </div>
         <div
           className={selectedFilter === "Availability" ? "active-option" : "filter-option"}
           id="Availability"
         >
-          <h4><center>Availability</center></h4>
+          Availability
         </div>
         <div
           className={selectedFilter === "Combined" ? "active-option" : "filter-option"}
           id="Combined"
         >
-          <h4><center>Combined</center></h4>
+          Combined
         </div>
       </div>
 
       <div id="user-list">
         {filteredList.map((item, index) => (
           <div className="car-item" key={index}>
-            <div className="user-name">{`Name: ${item.firstName}${" " + item.lastName}`}</div>
+            <h3 className="user-name">{`${item.firstName}${" " + item.lastName}`}</h3>
             <div className="user-year">{`Year: ${item.year}`}</div>
             <div className="user-dept">{`Department: ${item.dept}`}</div>
             <div className="user-virtual">{`Preference for: ${item.virtual}`}</div>

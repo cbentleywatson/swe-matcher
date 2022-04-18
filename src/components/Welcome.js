@@ -63,7 +63,7 @@ const Welcome = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#e2e2d2",
         alignItems: "center",
         justifyContent: "center",
     },
@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
         marginTop: 40,
         backgroundColor: "#48b393",
     },
+
+
 });
 
 export default Welcome;
