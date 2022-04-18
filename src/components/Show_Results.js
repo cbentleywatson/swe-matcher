@@ -1,24 +1,177 @@
 import { useEffect, useState } from "react";
 import "./result_style.css";
-import Data from "./Data";
 
-export default function App() {
-  // Array of all car objects
+export default function Show_Results() {
+    const Data1 = [
+        {
+          firstName: "Lindsay",
+          lastName: "Lord",
+          year: "4th year",
+          dept: "Engineering", 
+          email: "lindsay.lord",
+          studyTimes: "Monday Tuesday Evening", 
+          locations: "Marston",
+          similarClass: "CEN3031",
+          virtual: "Zoom",
+          studySetting: "Group", 
+          problemApproach: "Theoretical",
+          outgoingness: "Extroverted", 
+          planning: "Plan Ahead"
+        },
+        {
+            firstName: "Maya",
+            lastName: "Harris",
+            year: "3rd year",
+            dept: "Engineering", 
+            email: "blah",
+            studyTimes: "Monday Tuesday Evening", 
+            locations: "Marston",
+            similarClass: "CEN3031",
+            virtual: "Zoom",
+            studySetting: "Group", 
+            problemApproach: "Theoretical",
+            outgoingness: "Extroverted", 
+            planning: "Plan Ahead"
+          },
+          {
+            firstName: "Joe",
+            lastName: "Sulkes",
+            year: "2nd year",
+            dept: "Engineering", 
+            email: "cool_email",
+            studyTimes: "Monday Tuesday Evening", 
+            locations: "Marston",
+            similarClass: "CEN3031",
+            virtual: "Zoom",
+            studySetting: "Group", 
+            problemApproach: "Theoretical",
+            outgoingness: "Extroverted", 
+            planning: "Plan Ahead"
+          },
+        
+    ];
 
+    const Data2 = [
+        {
+            firstName: "Maya",
+            lastName: "Harris",
+            year: "3rd year",
+            dept: "Engineering", 
+            email: "blah",
+            studyTimes: "Monday Tuesday Evening", 
+            locations: "Marston",
+            similarClass: "CEN3031",
+            virtual: "Zoom",
+            studySetting: "Group", 
+            problemApproach: "Theoretical",
+            outgoingness: "Extroverted", 
+            planning: "Plan Ahead"
+          },
+        {
+          firstName: "Lindsay",
+          lastName: "Lord",
+          year: "4th year",
+          dept: "Engineering", 
+          email: "lindsay.lord",
+          studyTimes: "Monday Tuesday Evening", 
+          locations: "Marston",
+          similarClass: "CEN3031",
+          virtual: "Zoom",
+          studySetting: "Group", 
+          problemApproach: "Theoretical",
+          outgoingness: "Extroverted", 
+          planning: "Plan Ahead"
+        },
+          {
+            firstName: "Joe",
+            lastName: "Sulkes",
+            year: "2nd year",
+            dept: "Engineering", 
+            email: "cool_email",
+            studyTimes: "Monday Tuesday Evening", 
+            locations: "Marston",
+            similarClass: "CEN3031",
+            virtual: "Zoom",
+            studySetting: "Group", 
+            problemApproach: "Theoretical",
+            outgoingness: "Extroverted", 
+            planning: "Plan Ahead"
+          }
+        
+      ];
+      const Data3 = [
+        {
+            firstName: "Joe",
+            lastName: "Sulkes",
+            year: "2nd year",
+            dept: "Engineering", 
+            email: "cool_email",
+            studyTimes: "Monday Tuesday Evening", 
+            locations: "Marston",
+            similarClass: "CEN3031",
+            virtual: "Zoom",
+            studySetting: "Group", 
+            problemApproach: "Theoretical",
+            outgoingness: "Extroverted", 
+            planning: "Plan Ahead"
+          },
+        {
+            firstName: "Maya",
+            lastName: "Harris",
+            year: "3rd year",
+            dept: "Engineering", 
+            email: "blah",
+            studyTimes: "Monday Tuesday Evening", 
+            locations: "Marston",
+            similarClass: "CEN3031",
+            virtual: "Zoom",
+            studySetting: "Group", 
+            problemApproach: "Theoretical",
+            outgoingness: "Extroverted", 
+            planning: "Plan Ahead"
+          },
+        {
+          firstName: "Lindsay",
+          lastName: "Lord",
+          year: "4th year",
+          dept: "Engineering", 
+          email: "lindsay.lord",
+          studyTimes: "Monday Tuesday Evening", 
+          locations: "Marston",
+          similarClass: "CEN3031",
+          virtual: "Zoom",
+          studySetting: "Group", 
+          problemApproach: "Theoretical",
+          outgoingness: "Extroverted", 
+          planning: "Plan Ahead"
+        }
+        
+      ];
   // List of all cars satisfing all the filters
-  const [filteredList, setFilteredList] = useState(Data);
+  const [filteredList, setFilteredList] = useState(Data1);
   // Selected filter
   const [selectedFilter, setSelectedFilter] = useState();
 
   const filterByCategory = (filteredData) => {
+    //in here is where we want to switch between arrays
     // Avoid filter for null value
     if (!selectedFilter) {
       return filteredData;
     }
 
-    const filteredUsers = filteredData.filter(
-      (user) => user.year === selectedFilter
-    );
+    var filteredUsers;
+    if (selectedFilter == "Compatibility")
+    {
+        filteredUsers = Data1;
+    }
+    else if (selectedFilter == "Availability")
+    {
+        filteredUsers = Data2;
+    }
+    else
+    {
+        filteredUsers = Data3;
+    }
     return filteredUsers;
   };
 
@@ -34,33 +187,33 @@ export default function App() {
   };
 
   useEffect(() => {
-    var filteredData = filterByCategory(Data);
+    var filteredData = filterByCategory(Data1);
     setFilteredList(filteredData);
   }, [selectedFilter]);
 
   return (
     <div className="App">
-    <div className="user-year">{`Current Selection: ${selectedFilter}`}</div>
+    <div className="user-filter">{`Current Selection: ${selectedFilter}`}</div>
       
       <div>Filter by Year</div>
       <div id="year-options" onClick={handleFilterChange}>
         <div
-          className={selectedFilter === "2nd year" ? "active-option" : "filter-option"}
-          id="2nd year"
+          className={selectedFilter === "Compatibility" ? "active-option" : "filter-option"}
+          id="Compatibility"
         >
-          2nd year
+          Compatibility
         </div>
         <div
-          className={selectedFilter === "3rd year" ? "active-option" : "filter-option"}
-          id="3rd year"
+          className={selectedFilter === "Availability" ? "active-option" : "filter-option"}
+          id="Availability"
         >
-          3rd year
+          Availability
         </div>
         <div
-          className={selectedFilter === "4th year" ? "active-option" : "filter-option"}
-          id="4th year"
+          className={selectedFilter === "Combined" ? "active-option" : "filter-option"}
+          id="Combined"
         >
-          4th year
+          Combined
         </div>
       </div>
 
@@ -72,6 +225,7 @@ export default function App() {
             <div className="user-dept">{`Department: ${item.dept}`}</div>
             <div className="user-virtual">{`Preference for: ${item.virtual}`}</div>
             <div className="user-studySetting">{`Prefer to work in: ${item.studySetting}`}</div>
+            <div className="user-studySetting">{`Email address: ${item.email}`}</div>
           </div>
         ))}
       </div>
