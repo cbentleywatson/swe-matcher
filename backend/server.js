@@ -4,13 +4,47 @@ var request = require("request");
 const path = require('path');
 var router =express.Router();
 const app = express();
+const fs = require('fs')
+//const fs = require('browserify-fs')
+let data = "Hello and Welcome to linuxhint.com"
+
+const users_as_java_script_objects = [];
+try {
+  // read contents of the file
+  const data = fs.readFileSync('file.log', 'UTF-8');
+
+  // split the contents by new line
+  const lines = data.split(/\r?\n/);
+
+  // print all lines
+  lines.forEach((line) => {
+      console.log(line);
+      users_as_java_script_objects.push(JSON.parse(line));
+  });
+} catch (err) {
+  console.error(err);
+}
+
+
+
+
+
+fs.writeFile('file.txt', data, { flag: 'a+' }, (err) => {
+
+  // error handling using throw
+  
+  if (err) throw err;
+  
+  })
+
+
 
 var cors = require('cors')
 const port = process.env.PORT || 5000; // previously this was 3000
 app.set('port', port);
 
 app.use(cors())
-
+/*
 mongoose.connect('mongodb://localhost:27017/',{
 	dbname: 'my-dbname',
 	useNewUrlParser: true,
@@ -33,6 +67,7 @@ mongoose.connect('mongodb://localhost:27017/',{
 const User = mongoose.model('users', userSchema);
 User.createIndexes();
 // end of db set up??
+*/
 app.get('/test-mongo', (req,resp) =>{
 	resp.send("app is working");
 
@@ -52,7 +87,17 @@ app.get('/simplest/:name', function (req, res, next) {
     //res.send({ title: 'GeeksforGeeks' });
     console.log("first name: " + req.params.name );
     res.send("first name: " + req.params.name );
-   
+    const content = req.params.name
+
+    users_as_java_script_objects.push(JSON.parse(content));
+    
+    fs.appendFile('file.log', content, err => {
+      if (err) {
+        console.error(err)
+        return
+      }
+      //done!
+    })   
 })
 
 /*
