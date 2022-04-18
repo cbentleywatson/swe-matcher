@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     },
 
     inputView: {
-        backgroundColor: "#FFC0CB",
+        backgroundColor: "#b9db92",
         borderRadius: 30,
         width: "70%",
         height: 45,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 40,
-        backgroundColor: "#ff1493",
+        backgroundColor: "#48b393",
     },
 
     profileBtn: {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 40,
-        backgroundColor: "#ff1493",
+        backgroundColor: "#48b393",
     },
 });
 
