@@ -1,3 +1,27 @@
+function sortDistances(users) { 
+    let size = users.length;
+    var newUsers = users;
+    let minimum = 0;
+    
+    for(let i = 0; i < size; i++) {
+      minimum = i;
+      for(let j = i + 1; j < size; j++){
+    if(newUsers[j].distToSrc < newUsers[minimum].distToSrc) {
+          minimum = j;
+        }
+      }
+      
+      if (minimum != i) {
+        let temp = newUsers[i]; 
+        newUsers[i] = newUsers[minimum];
+        newUsers[minimum] = temp;      
+      }
+    }
+        
+    return newUsers; 
+  }
+  
+
 function calcWeightAvailability(user1, user2) {
 let weight=0.1;
 studytimes1 = user1.studyTime.length;
@@ -63,6 +87,7 @@ class User {
         this.problemApproach=problemApproach;
         this.outgoingness=outgoingness;
         this.planning=planning;
+        this.distance=distance;
     }
 }
 class generalGraph {
@@ -74,10 +99,49 @@ constructor(size) {
     this.matrix=Array(size).fill(0).map(() => new Array(size).fill(0));
 }
 addEdge(user1, user2) {
-    var weight= calcWeightGeneral();
+    var weight= calcWeightGeneral(user1,user2);
     this.matrix[user1.index][user2.index] = weight;
     this.matrix[user2.index][user1.index] = weight;
 }
+dijkstra(sourceUser) {
+    let distances = new Array(this.size); //array of the shortest distances from every user to the source user
+    let visited = new Array(this.size);//boolean array keeping track of the users visited
+    for (let userIndex = 0; userIndex < this.size; userIndex++) {
+        distances[userIndex] = Number.MAX_VALUE;
+        visited[userIndex] = false;
+    }
+    distances[sourceUser] = 0; //set distance to source game equal to 0
+    let ancestors = new Array(this.size);
+    ancestors[sourceuser] = -1;
+
+    for (let i = 1; i < this.size; i++) {
+        let closestUser = -1;
+        let minDistance = Number.MAX_VALUE;
+        for (let userIndex = 0; userIndex < this.size; userIndex++) {
+            if (!visited[userIndex] && distances[userIndex] < minDistance) {
+                closestUser = userIndex;
+                minDistance = distances[userIndex];
+            }
+        }
+        visited[closestUser] = true;
+
+        // Update dist value of the
+        // adjacent vertices of the
+        // picked vertex.
+        for (let userIndex = 0; userIndex < this.size; userIndex++) {
+          let edgeDistance = this.matrix[closestUser][userIndex];
+              
+          if (edgeDistance > 0 && ((minDistance + edgeDistance) < distances[userIndex])) {
+            ancestors[userIndex] = closestGame;
+            distances[userIndex] = minDistance + edgeDistance;
+          }
+        }
+      }
+       
+      for(var i = 0; i < distances.length; i++) {
+        users[i].distance = distances[i];
+      }
+  }
 
 
 }
@@ -101,22 +165,42 @@ class compatibleGraph {
             distances[userIndex] = Number.MAX_VALUE;
             visited[userIndex] = false;
         }
-        distances[srcUser] = 0; //set distance to source game equal to 0
+        distances[sourceUser] = 0; //set distance to source game equal to 0
         let ancestors = new Array(this.size);
-        ancestors[srcGame] = -1;
+        ancestors[sourceuser] = -1;
     
         for (let i = 1; i < this.size; i++) {
-            let closestGame = -1;
+            let closestUser = -1;
             let minDistance = Number.MAX_VALUE;
-            for (let gameIndex = 0; gameIndex < this.size; gameIndex++) {
-                if (!visited[gameIndex] && distances[gameIndex] < minDistance) {
-                    closestGame = gameIndex;
-                    minDistance = distances[gameIndex];
+            for (let userIndex = 0; userIndex < this.size; userIndex++) {
+                if (!visited[userIndex] && distances[userIndex] < minDistance) {
+                    closestUser = userIndex;
+                    minDistance = distances[userIndex];
                 }
             }
+            visited[closestUser] = true;
+
+            // Update dist value of the
+            // adjacent vertices of the
+            // picked vertex.
+            for (let userIndex = 0; userIndex < this.size; userIndex++) {
+              let edgeDistance = this.matrix[closestUser][userIndex];
+                  
+              if (edgeDistance > 0 && ((minDistance + edgeDistance) < distances[userIndex])) {
+                ancestors[userIndex] = closestGame;
+                distances[userIndex] = minDistance + edgeDistance;
+              }
+            }
+          }
+           
+          for(var i = 0; i < distances.length; i++) {
+            users[i].distance = distances[i];
+          }
+      }
+    }
     
-}
-class availablilityGraph {
+
+class availabilityGraph {
     constructor(size) {
         if(size<=0) {
             return;
@@ -125,8 +209,88 @@ class availablilityGraph {
         this.matrix=Array(size).fill(0).map(() => new Array(size).fill(0));
     }
     addEdge(user1, user2) {
-        var weight= calcWeightCompatibility();
+        var weight= calcWeightAvailability(user1, user2);
         this.matrix[user1.index][user2.index] = weight;
         this.matrix[user2.index][user1.index] = weight;
     }
+    dijkstra(sourceUser) {
+        let distances = new Array(this.size); //array of the shortest distances from every user to the source user
+        let visited = new Array(this.size);//boolean array keeping track of the users visited
+        for (let userIndex = 0; userIndex < this.size; userIndex++) {
+            distances[userIndex] = Number.MAX_VALUE;
+            visited[userIndex] = false;
+        }
+        distances[sourceUser] = 0; //set distance to source game equal to 0
+        let ancestors = new Array(this.size);
+        ancestors[sourceuser] = -1;
+    
+        for (let i = 1; i < this.size; i++) {
+            let closestUser = -1;
+            let minDistance = Number.MAX_VALUE;
+            for (let userIndex = 0; userIndex < this.size; userIndex++) {
+                if (!visited[userIndex] && distances[userIndex] < minDistance) {
+                    closestUser = userIndex;
+                    minDistance = distances[userIndex];
+                }
+            }
+            visited[closestUser] = true;
+
+            // Update dist value of the
+            // adjacent vertices of the
+            // picked vertex.
+            for (let userIndex = 0; userIndex < this.size; userIndex++) {
+              let edgeDistance = this.matrix[closestUser][userIndex];
+                  
+              if (edgeDistance > 0 && ((minDistance + edgeDistance) < distances[userIndex])) {
+                ancestors[userIndex] = closestGame;
+                distances[userIndex] = minDistance + edgeDistance;
+              }
+            }
+          }
+           
+          for(var i = 0; i < distances.length; i++) {
+            users[i].distance = distances[i];
+          }
+      }
+
 }
+
+//Making the graphs
+var users=[]; //Need to put each user into this array and assign each user their member variables (from the json file)
+var sourceUser=users[users.length-1]; //sourceUser is the person that just made an account, assuming that person is pushed to the back of the users array
+cGraph = new compatibleGraph(users.length);
+  for(var i = 0; i < users.length; i++) {
+    for(var j = 0; j < users.length; j++) {
+      cGraph.addEdge(users[i], users[j]);
+    }
+  }
+
+  gGraph = new generalGraph(users.length);
+  for(var i = 0; i < users.length; i++) {
+    for(var j = 0; j < users.length; j++) {
+      gGraph.addEdge(users[i], users[j]);
+    }
+  }
+
+  aGraph = new availabilityGraph(users.length);
+  for(var i = 0; i < users.length; i++) {
+    for(var j = 0; j < users.length; j++) {
+      aGraph.addEdge(users[i], users[j]);
+    }
+  }
+//if its filtered for compatibility
+  cGraph.dijkstra(sourceUser.index);
+  var newUsers = new Array();
+  newUsers = sortDistances(users);
+
+//if filtered for availability 
+aGraph.dijkstra(sourceUser.index);
+  var newUsers = new Array();
+  newUsers = sortDistances(users);
+//if filtered for general compatibility and availability
+  gGraph.dijkstra(sourceUser.index);
+  var newUsers = new Array();
+  newUsers = sortDistances(users);
+
+
+    
