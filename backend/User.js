@@ -257,6 +257,8 @@ class availabilityGraph {
 
 //Making the graphs
 var users=[]; //Need to put each user into this array and assign each user their member variables (from the json file)
+
+
 var sourceUser=users[users.length-1]; //sourceUser is the person that just made an account, assuming that person is pushed to the back of the users array
 cGraph = new compatibleGraph(users.length);
   for(var i = 0; i < users.length; i++) {

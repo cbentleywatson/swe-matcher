@@ -51,7 +51,6 @@ mongoose.connect('mongodb://localhost:27017/',{
 	useUnifiedTopology: true
 	},err => err ? console.log(err) :
 	console.log(' connected to my-dbname database'));
-
   const userSchema = new mongoose.Schema({
 	name : {
 		type: String,
@@ -61,9 +60,7 @@ mongoose.connect('mongodb://localhost:27017/',{
 		type: Date,
 		default: Date.now,
 	},
-
 });
-
 const User = mongoose.model('users', userSchema);
 User.createIndexes();
 // end of db set up??
@@ -88,9 +85,11 @@ app.get('/simplest/:name', function (req, res, next) {
     console.log("first name: " + req.params.name );
     res.send("first name: " + req.params.name );
     const content = req.params.name
-
-    users_as_java_script_objects.push(JSON.parse(content));
-    
+    const new_user = JSON.parse(content)
+    users_as_java_script_objects.push(new_user);
+   var user= User(new_user);
+users.push(user);
+user.index=users.length-1;
     fs.appendFile('file.log', content, err => {
       if (err) {
         console.error(err)
@@ -103,13 +102,11 @@ app.get('/simplest/:name', function (req, res, next) {
 /*
 const firebase = require("firebase");
 require("firebase/firestore");
-
 firebase.initializeApp({
     apiKey: "AIzaSyAbsyhPmWwBkwxihBLXU-rRd2JAHa-SYI0",
     authDomain: "swe-matcher.firebaseapp.com",
     projectId: "swe-matcher"
   });
-
 var db = firebase.firestore();
 */
 
@@ -164,7 +161,6 @@ app.route('/simplest/:name').get(function(){
   console.log("first name: " + req.params.name );
  // console.log("last name: "+ req.params.last);
 });
-
 ('/simplest/:name', (req, res) => {
     
   //var user =JSON.parse(req.params.name);
@@ -175,7 +171,6 @@ app.route('/simplest/:name').get(function(){
   console.log("first name: " + req.params.name );
  // console.log("last name: "+ req.params.last);
 });
-
 */
 
 
@@ -208,7 +203,6 @@ router.get('/test-longer/:name', function(req, res) {
 
 /*
 const bodyParser = require("body-parser");
-
 router.post(‘/login’,(req, res) => {
     var user_name = req.body.user;
     var password = req.body.password;
@@ -225,12 +219,10 @@ router.post(‘/login’,(req, res) => {
 /* Basic Tests*/
 /*
 app.route('/survey-results-post')
-
 .post(function(req,res){
   console.log("survey results input");
   var survey_results = req.body;
   var cur_results =[survey_results];
-
   cur_results.forEach(function(obj) {
     db.collection("users").add({
         FirstName : obj.FirstName,
@@ -262,7 +254,7 @@ router.get('/response', function(req, res) {
 
     // apply the routes to our application
 app.use('/', router);
-});
+  
 
 /*
   callBackendAPI = async () => {
