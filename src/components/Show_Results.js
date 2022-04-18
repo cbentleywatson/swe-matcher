@@ -8,6 +8,7 @@ export default function Show_Results() {
     const DataC = [
         {
           firstName: "Lindsay",
+          url: "4.png",
           lastName: "Lord",
           year: "4th year",
           dept: "Engineering", 
@@ -24,6 +25,7 @@ export default function Show_Results() {
         {
             firstName: "Maya",
             lastName: "Harris",
+            url: "1.png",
             year: "3rd year",
             dept: "Engineering", 
             email: "blah",
@@ -39,6 +41,7 @@ export default function Show_Results() {
           {
             firstName: "Joe",
             lastName: "Sulkes",
+            url: "2.png",
             year: "2nd year",
             dept: "Engineering", 
             email: "cool_email",
@@ -58,6 +61,7 @@ export default function Show_Results() {
         {
             firstName: "Maya",
             lastName: "Harris",
+            url: "1.png",
             year: "3rd year",
             dept: "Engineering", 
             email: "blah",
@@ -73,6 +77,7 @@ export default function Show_Results() {
         {
           firstName: "Lindsay",
           lastName: "Lord",
+          url: "3.png",
           year: "4th year",
           dept: "Engineering", 
           email: "lindsay.lord",
@@ -88,6 +93,7 @@ export default function Show_Results() {
           {
             firstName: "Joe",
             lastName: "Sulkes",
+            url: "2.png",
             year: "2nd year",
             dept: "Engineering", 
             email: "cool_email",
@@ -106,6 +112,7 @@ export default function Show_Results() {
         {
             firstName: "Joe",
             lastName: "Sulkes",
+            url: "2.png",
             year: "2nd year",
             dept: "Engineering", 
             email: "cool_email",
@@ -121,6 +128,7 @@ export default function Show_Results() {
         {
             firstName: "Maya",
             lastName: "Harris",
+            url: "1.png",
             year: "3rd year",
             dept: "Engineering", 
             email: "blah",
@@ -136,6 +144,7 @@ export default function Show_Results() {
         {
           firstName: "Lindsay",
           lastName: "Lord",
+          url: "3.png",
           year: "4th year",
           dept: "Engineering", 
           email: "lindsay.lord",
@@ -223,6 +232,7 @@ export default function Show_Results() {
       <div id="user-list">
         {filteredList.map((item, index) => (
           <div className="car-item" key={index}>
+              <img className="car-image" src= {item.url} alt= "car-img"/>
             <h3 className="user-name">{`${item.firstName}${" " + item.lastName}`}</h3>
             <div className="user-year">{`Year: ${item.year}`}</div>
             <div className="user-dept">{`Department: ${item.dept}`}</div>
