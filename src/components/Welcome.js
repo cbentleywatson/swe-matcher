@@ -54,6 +54,7 @@ const Welcome = () => {
                 <NavLink to="/survey" >Create Profile</NavLink>
             </TouchableOpacity>
         </View>
+        <NavLink to="/results" >Show Results</NavLink>
         </div>
     );
 
@@ -62,7 +63,7 @@ const Welcome = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#e2e2d2",
         alignItems: "center",
         justifyContent: "center",
     },
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     },
 
     inputView: {
-        backgroundColor: "#FFC0CB",
+        backgroundColor: "#b9db92",
         borderRadius: 30,
         width: "70%",
         height: 45,
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 40,
-        backgroundColor: "#ff1493",
+        backgroundColor: "#48b393",
     },
 
     profileBtn: {
@@ -110,8 +111,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: 40,
-        backgroundColor: "#ff1493",
+        backgroundColor: "#48b393",
     },
+
+
 });
 
 export default Welcome;

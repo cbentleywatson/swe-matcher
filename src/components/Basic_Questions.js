@@ -145,6 +145,18 @@ const handleOnSubmit = async(e) => {
 
 
 
+/*
+ const data = {firstName : 'fred'};
+  //axios.post('/survey-results-post', data);
+      axios({
+  method: 'post',
+  url: '/survey-results-post',
+  data: {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }
+  })
+  console.log(JSON.stringify)
 
 }
 
@@ -203,6 +215,57 @@ const Basic_Questions =  () => {
           method: 'get',
           url: 'http://localhost:5000/simplest/'+ results,
           timeout: 8000 // Let's say you want to wait at least 8 seconds
+const data = { username: 'example' };
+
+fetch('https://example.com/profile', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+*/
+//alert("before feftch");
+const data = { username: 'example' };
+//fetch('https://example.com/profile', {
+fetch('http://localhost/survey-results-post', {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'React POST Request Example' })
+    };
+    fetch('https://reqres.in/invalid-url', requestOptions)
+        .then(async response => {
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson && await response.json();
+
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
 
         })
         .then(function (response) {
@@ -215,82 +278,24 @@ const Basic_Questions =  () => {
 */
 
 
+//alert(JSON.stringify(data));
 
+const Basic_Questions = () => {
 
-
-
-
-
-
-        //const results = JSON.stringify(sender.data);
-        // Beginning of functions from the test set up
-        
-        /*
-        alert("Begin copied lines")
-        e.preventDefault();
-        let result = await fetch(
-          ' http://localhost:5000/register', {
-              method: "post",
-              body: "hell0",
-              headers: {
-                'Content-Type': 'application/json'
-              }
-          }
-        )
-        result = await result.json();
-        console.warn(result);
-        if (result) {
-            alert("Data saved successfully");
-            //setEmail("");
-           // setName("");
-        }
-        */
-        // End of pulled functions
-  
-    //    alert(results);
-    
 
     const alertResults = useCallback((sender) => {
     /*The results need to be send right here */
       
-      const results = JSON.stringify(sender.data);
-      console.log("Result!");
-//      alert(" results "  +results);
-//      alert(results);
-      //const results = JSON.stringify(sender.data);
-      // Beginning of functions from the test set up
-      
-      /*
-      alert("Begin copied lines")
-      e.preventDefault();
-      let result = await fetch(
-        ' http://localhost:5000/register', {
-            method: "post",
-            body: "hell0",
-            headers: {
-              'Content-Type': 'application/json'
-            }
-        }
-      )
-      result = await result.json();
-      console.warn(result);
-      if (result) {
-          alert("Data saved successfully");
-          //setEmail("");
-         // setName("");
-      }
-      */
-      // End of pulled functions
+    const results = JSON.stringify(sender.data);
+    //console.log("Result!");
+    window.location.href = 'http://localhost:3000/results';
+  //alert("before axios");
+ 
 
-  //    alert(results);
-    }, []);
-  // Start of backend call!
-  //const s = sender;
-  //survey.onComplete.add(handleOnSubmit);
-  //survey.onComplete.add(alertResults);
-  survey.onComplete.add(alert_and_send);
-  //survey.onComplete.add(handleOnSubmit);
-
+  //alert(results);
+  }, []);
+  survey.onComplete.add(alertResults);
+  
   return (
     <div className="Basic">
      <h1> <center>MatchMakers</center></h1>
@@ -359,7 +364,7 @@ var surveyJSON = {
               {
                   name: "StudyTime",
                   title: "How many hours do you spend at the library per week? ",
-                  type: "dropdown",
+                  type: "checkbox",
                   choices: ["1-10", "11-20", "20+"]
               },
               
