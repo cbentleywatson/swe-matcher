@@ -1,3 +1,5 @@
+
+
 function sortDistances(users) { 
     let size = users.length;
     var newUsers = users;
@@ -6,7 +8,7 @@ function sortDistances(users) {
     for(let i = 0; i < size; i++) {
       minimum = i;
       for(let j = i + 1; j < size; j++){
-    if(newUsers[j].distToSrc < newUsers[minimum].distToSrc) {
+    if(newUsers[j].distance < newUsers[minimum].distance) {
           minimum = j;
         }
       }
@@ -49,12 +51,13 @@ function calcWeightCompatibility(user1, user2) {
     let weight=0.1
     let simClass1 = user1.similarClass.toLowerCase();
     let simClass2=user2.similarClass.toLowerCase();
-if(user1.dept===user2.dept) {
+if(user1.dept===user2.dept) { //If the two users have similar department, add 1 to the weight
 weight++;
-} if(simClass1===simClass2) {
-    weight+=5;
+} if(simClass1===simClass2) { 
+    weight+=5; //If the users have the same class, add 5 to the weight
 } if(user1.studySetting===user2.studySetting) {
-weight++;
+weight++; //if the users have the same study setting, problem approach, planning, and outgoingness,
+//add 1 to the weight
 } if(user1.problemApproach===user2.problemApproach) {
     weight++;
 } if(user1.planning===user2.planning) {
@@ -62,7 +65,8 @@ weight++;
 } if(user1.outgoingness===user2.outgoingness) {
     weight++
 }
-return 1/weight;
+return 1/weight; //the weight between them is 1/weight, which means that the smaller the weight,
+//the more similar the users are to each other, compatibility wise
 } 
 
 function calcWeightGeneral(user1, user2) {
@@ -72,24 +76,47 @@ function calcWeightGeneral(user1, user2) {
 }
 
 
+// class User {
+//     constructor(index, firstName, lastName, year, dept, email, studyTimes, locations, similarClass, studySetting, problemApproach, outgoingness, planning) {
+//         this.index=index;
+//         this.firstName=firstName;
+//         this.lastName=lastName;
+//         this.year=year;
+//         this.dept=dept;
+//         this.email=email;
+//         this.studyTimes=studyTimes;
+//         this.locations=locations;
+//         this.similarClass=similarClass;
+//         this.studySetting=studySetting;
+//         this.problemApproach=problemApproach;
+//         this.outgoingness=outgoingness;
+//         this.planning=planning;
+//         this.distance=distance;
+//     }
+// }
 class User {
-    constructor(index, firstName, lastName, year, dept, email, studyTimes, locations, similarClass, studySetting, problemApproach, outgoingness, planning) {
+    constructor(new_user) {
+        
         this.index=index;
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.year=year;
-        this.dept=dept;
-        this.email=email;
-        this.studyTimes=studyTimes;
-        this.locations=locations;
-        this.similarClass=similarClass;
-        this.studySetting=studySetting;
-        this.problemApproach=problemApproach;
-        this.outgoingness=outgoingness;
-        this.planning=planning;
+        this.firstName=new_user.FirstName;
+        this.lastName=new_user.LastName;
+        this.year=new_user.Year;
+        this.dept=new_user.Department;
+        this.email=new_user.Email;
+       // this.study=
+        this.locations=new_user.Location;
+        this.similarClass=new_user.SimilarClass;
+        this.studySetting=new_user.StudySetting;
+        this.problemApproach=new_user.ProblemApproach;
+        this.outgoingness=new_user.Outgoingness;
+        this.planning=new_user.Planning;
         this.distance=distance;
+        this.json = JSON.stringify(new_user);
     }
 }
+
+
+
 class generalGraph {
 constructor(size) {
     if(size<=0) {
@@ -110,7 +137,7 @@ dijkstra(sourceUser) {
         distances[userIndex] = Number.MAX_VALUE;
         visited[userIndex] = false;
     }
-    distances[sourceUser] = 0; //set distance to source game equal to 0
+    distances[sourceUser] = 0; //set distance to source user equal to 0
     let ancestors = new Array(this.size);
     ancestors[sourceuser] = -1;
 
@@ -132,7 +159,7 @@ dijkstra(sourceUser) {
           let edgeDistance = this.matrix[closestUser][userIndex];
               
           if (edgeDistance > 0 && ((minDistance + edgeDistance) < distances[userIndex])) {
-            ancestors[userIndex] = closestGame;
+            ancestors[userIndex] = closestUser;
             distances[userIndex] = minDistance + edgeDistance;
           }
         }
@@ -165,7 +192,7 @@ class compatibleGraph {
             distances[userIndex] = Number.MAX_VALUE;
             visited[userIndex] = false;
         }
-        distances[sourceUser] = 0; //set distance to source game equal to 0
+        distances[sourceUser] = 0; //set distance to source user equal to 0
         let ancestors = new Array(this.size);
         ancestors[sourceuser] = -1;
     
@@ -187,7 +214,7 @@ class compatibleGraph {
               let edgeDistance = this.matrix[closestUser][userIndex];
                   
               if (edgeDistance > 0 && ((minDistance + edgeDistance) < distances[userIndex])) {
-                ancestors[userIndex] = closestGame;
+                ancestors[userIndex] = closestUser;
                 distances[userIndex] = minDistance + edgeDistance;
               }
             }
@@ -220,7 +247,7 @@ class availabilityGraph {
             distances[userIndex] = Number.MAX_VALUE;
             visited[userIndex] = false;
         }
-        distances[sourceUser] = 0; //set distance to source game equal to 0
+        distances[sourceUser] = 0; //set distance to source user equal to 0
         let ancestors = new Array(this.size);
         ancestors[sourceuser] = -1;
     
@@ -242,7 +269,7 @@ class availabilityGraph {
               let edgeDistance = this.matrix[closestUser][userIndex];
                   
               if (edgeDistance > 0 && ((minDistance + edgeDistance) < distances[userIndex])) {
-                ancestors[userIndex] = closestGame;
+                ancestors[userIndex] = closestUser;
                 distances[userIndex] = minDistance + edgeDistance;
               }
             }
@@ -252,47 +279,52 @@ class availabilityGraph {
             users[i].distance = distances[i];
           }
       }
+    }
 
-}
+
 
 //Making the graphs
 var users=[]; //Need to put each user into this array and assign each user their member variables (from the json file)
-
-
 var sourceUser=users[users.length-1]; //sourceUser is the person that just made an account, assuming that person is pushed to the back of the users array
-cGraph = new compatibleGraph(users.length);
-  for(var i = 0; i < users.length; i++) {
-    for(var j = 0; j < users.length; j++) {
-      cGraph.addEdge(users[i], users[j]);
-    }
-  }
+// cGraph = new compatibleGraph(users.length);
+//   for(var i = 0; i < users.length; i++) {
+//     for(var j = 0; j < users.length; j++) {
+//       cGraph.addEdge(users[i], users[j]);
+//     }
+//   }
 
-  gGraph = new generalGraph(users.length);
-  for(var i = 0; i < users.length; i++) {
-    for(var j = 0; j < users.length; j++) {
-      gGraph.addEdge(users[i], users[j]);
-    }
-  }
+//   gGraph = new generalGraph(users.length);
+//   for(var i = 0; i < users.length; i++) {
+//     for(var j = 0; j < users.length; j++) {
+//       gGraph.addEdge(users[i], users[j]);
+//     }
+//   }
 
-  aGraph = new availabilityGraph(users.length);
-  for(var i = 0; i < users.length; i++) {
-    for(var j = 0; j < users.length; j++) {
-      aGraph.addEdge(users[i], users[j]);
-    }
-  }
-//if its filtered for compatibility
-  cGraph.dijkstra(sourceUser.index);
-  var newUsers = new Array();
-  newUsers = sortDistances(users);
+//   aGraph = new availabilityGraph(users.length);
+//   for(var i = 0; i < users.length; i++) {
+//     for(var j = 0; j < users.length; j++) {
+//       aGraph.addEdge(users[i], users[j]);
+//     }
+//   }
+// //if its filtered for compatibility
+// cGraph = new compatibleGraph(users.length);
+//   for(var i = 0; i < users.length; i++) {
+//     for(var j = 0; j < users.length; j++) {
+//       cGraph.addEdge(users[i], users[j]);
+//     }
+//   }
+//   cGraph.dijkstra(sourceUser.index);
+//   var newUsers1 = new Array();
+//   newUsers1 = sortDistances(users);
 
-//if filtered for availability 
-aGraph.dijkstra(sourceUser.index);
-  var newUsers = new Array();
-  newUsers = sortDistances(users);
-//if filtered for general compatibility and availability
-  gGraph.dijkstra(sourceUser.index);
-  var newUsers = new Array();
-  newUsers = sortDistances(users);
+// //if filtered for availability 
+// aGraph.dijkstra(sourceUser.index);
+//   var newUsers2 = new Array();
+//   newUsers2 = sortDistances(users);
+// //if filtered for general compatibility and availability
+//   gGraph.dijkstra(sourceUser.index);
+//   var newUsers3 = new Array();
+//   newUsers3 = sortDistances(users);
 
 
     
