@@ -9,6 +9,11 @@ const axios = require('axios');
 console.log("log checlk");
 StylesManager.applyTheme("modern");
 
+
+
+
+
+
 //alert("Basic Questions Start"); working test funct
 /**
  *
@@ -182,7 +187,7 @@ const Basic_Questions =  () => {
               .then( (response) => {
               //alert("in response");
               console.log("Sent From the test");
-              console.log(response.data);
+              console.log(JSON.stringify(response.data));
               alert(response.data);
                 //    alert(response);
               //alert("axios response");

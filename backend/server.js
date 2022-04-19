@@ -56,6 +56,19 @@ for(let i = 0; i < string_array.length; i++){
     
 }
 
+function send_nested(json_list, length){
+  const arr = ['"p0":' , '"p1":','"p2":','"p3":', '"p4":', '"p5":','"p6"' ];
+  let acc = "{"
+  for(let i = 0; i < length; i++){
+      acc = acc + arr[i]  + JSON.stringify(json_list[i]);
+  }
+  acc= acc +"}"; 
+  acc = acc.replace(/\\/g, '');
+  return acc;
+}
+console.log(send_nested(string_array, 3));
+
+
 
 
 
@@ -114,7 +127,7 @@ app.get('/simplest/:name', function (req, res, next) {
 
     //res.send({ title: 'GeeksforGeeks' });
     console.log(req.params.name );
-    res.send("first+name: " +req.params.name );
+    res.send(req.params.name );
     const content = req.params.name
     const new_user = JSON.parse(content)
     users_as_java_script_objects.push(new_user);
