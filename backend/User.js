@@ -6,7 +6,7 @@ function sortDistances(users) {
     for(let i = 0; i < size; i++) {
       minimum = i;
       for(let j = i + 1; j < size; j++){
-    if(newUsers[j].distToSrc < newUsers[minimum].distToSrc) {
+    if(newUsers[j].distance < newUsers[minimum].distance) {
           minimum = j;
         }
       }
@@ -72,24 +72,46 @@ function calcWeightGeneral(user1, user2) {
 }
 
 
+// class User {
+//     constructor(index, firstName, lastName, year, dept, email, studyTimes, locations, similarClass, studySetting, problemApproach, outgoingness, planning) {
+//         this.index=index;
+//         this.firstName=firstName;
+//         this.lastName=lastName;
+//         this.year=year;
+//         this.dept=dept;
+//         this.email=email;
+//         this.studyTimes=studyTimes;
+//         this.locations=locations;
+//         this.similarClass=similarClass;
+//         this.studySetting=studySetting;
+//         this.problemApproach=problemApproach;
+//         this.outgoingness=outgoingness;
+//         this.planning=planning;
+//         this.distance=distance;
+//     }
+// }
 class User {
-    constructor(index, firstName, lastName, year, dept, email, studyTimes, locations, similarClass, studySetting, problemApproach, outgoingness, planning) {
+    constructor(new_user) {
         this.index=index;
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.year=year;
-        this.dept=dept;
-        this.email=email;
-        this.studyTimes=studyTimes;
-        this.locations=locations;
-        this.similarClass=similarClass;
-        this.studySetting=studySetting;
-        this.problemApproach=problemApproach;
-        this.outgoingness=outgoingness;
-        this.planning=planning;
-        this.distance=distance;
+        this.firstName=new_user.FirstName;
+        this.lastName=new_user.LastName;
+        this.year=new_user.Year;
+        this.dept=new_user.Department;
+        this.email=new_user.Email;
+        this.studyTimes=new_user.StudyTime;
+        this.locations=new_user.Location;
+        this.similarClass=new_user.SimilarClass;
+        this.studySetting=new_user.StudySetting;
+        this.problemApproach=new_user.ProblemApproach;
+        this.outgoingness=new_user.Outgoingness;
+        this.planning=new_user.Planning;
+        this.distance=distance
+        this.json = JSON.stringify(new_user);
     }
 }
+
+
+
 class generalGraph {
 constructor(size) {
     if(size<=0) {
@@ -165,7 +187,7 @@ class compatibleGraph {
             distances[userIndex] = Number.MAX_VALUE;
             visited[userIndex] = false;
         }
-        distances[sourceUser] = 0; //set distance to source game equal to 0
+        distances[sourceUser] = 0; //set distance to source user equal to 0
         let ancestors = new Array(this.size);
         ancestors[sourceuser] = -1;
     
@@ -187,7 +209,7 @@ class compatibleGraph {
               let edgeDistance = this.matrix[closestUser][userIndex];
                   
               if (edgeDistance > 0 && ((minDistance + edgeDistance) < distances[userIndex])) {
-                ancestors[userIndex] = closestGame;
+                ancestors[userIndex] = closestUser;
                 distances[userIndex] = minDistance + edgeDistance;
               }
             }
@@ -220,7 +242,7 @@ class availabilityGraph {
             distances[userIndex] = Number.MAX_VALUE;
             visited[userIndex] = false;
         }
-        distances[sourceUser] = 0; //set distance to source game equal to 0
+        distances[sourceUser] = 0; //set distance to source user equal to 0
         let ancestors = new Array(this.size);
         ancestors[sourceuser] = -1;
     
@@ -242,7 +264,7 @@ class availabilityGraph {
               let edgeDistance = this.matrix[closestUser][userIndex];
                   
               if (edgeDistance > 0 && ((minDistance + edgeDistance) < distances[userIndex])) {
-                ancestors[userIndex] = closestGame;
+                ancestors[userIndex] = closestUser;
                 distances[userIndex] = minDistance + edgeDistance;
               }
             }
@@ -280,17 +302,17 @@ cGraph = new compatibleGraph(users.length);
   }
 //if its filtered for compatibility
   cGraph.dijkstra(sourceUser.index);
-  var newUsers = new Array();
-  newUsers = sortDistances(users);
+  var newUsers1 = new Array();
+  newUsers1 = sortDistances(users);
 
 //if filtered for availability 
 aGraph.dijkstra(sourceUser.index);
-  var newUsers = new Array();
-  newUsers = sortDistances(users);
+  var newUsers2 = new Array();
+  newUsers2 = sortDistances(users);
 //if filtered for general compatibility and availability
   gGraph.dijkstra(sourceUser.index);
-  var newUsers = new Array();
-  newUsers = sortDistances(users);
+  var newUsers3 = new Array();
+  newUsers3 = sortDistances(users);
 
 
     
