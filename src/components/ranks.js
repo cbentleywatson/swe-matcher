@@ -82,28 +82,28 @@ async function test_order(number_requested) {
     const final_filled_string_arr = { general, available, compatibility };
     return final_filled_string_arr;
 
-/*
-var final_filled_string_list_general;
-final_filled_string_list.general = general;
-final_filled_string_list.available =available;
-final_filled_string_list.compatibility =compatibility;
-return final_filled_string_list;
-*/
+    /*
+    var final_filled_string_list_general;
+    final_filled_string_list.general = general;
+    final_filled_string_list.available =available;
+    final_filled_string_list.compatibility =compatibility;
+    return final_filled_string_list;
+    */
 
 
-/*
-const final_filled_js_objs_arr={JSON.parse(general), JSON.parse(available), JSON.parse(compatibility)};
-return  final_filled_js_objs_arr
- */
+    /*
+    const final_filled_js_objs_arr={JSON.parse(general), JSON.parse(available), JSON.parse(compatibility)};
+    return  final_filled_js_objs_arr
+     */
 
 
-/*
-var final_filled_js_obs_list;
-final_filled_js_obs_list.general = JSON.parse(general);
-final_filled_js_obs_list.available = JSON.parse(available);
-final_filled_js_obs_list.compatibility = JSON.parse(compatibility);
-return final_filled_js_obs_list
-    * /
+    /*
+    var final_filled_js_obs_list;
+    final_filled_js_obs_list.general = JSON.parse(general);
+    final_filled_js_obs_list.available = JSON.parse(available);
+    final_filled_js_obs_list.compatibility = JSON.parse(compatibility);
+    return final_filled_js_obs_list
+        */
 
 
 
