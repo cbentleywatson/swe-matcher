@@ -364,9 +364,9 @@ cGraph.dijkstra(sourceUser1.index);
 var newUsers1 = new Array();
 newUsers1 = sortDistances(usersComp);
 console.log(users);
-const newUsersC=[];
-for(var i=0; i<users.length; i++) {
-newUsersC.push(users[i].json);
+const newUsersC = [];
+for (var i = 0; i < users.length; i++) {
+  newUsersC.push(users[i].json);
 }
 
 // console.log("CGRAPH");
@@ -376,10 +376,10 @@ gGraph.dijkstra(sourceUser3.index);
 var newUsers3 = new Array();
 newUsers3 = sortDistances(usersGen);
 console.log(users);
-const newUsersG=[];
-for(var i=0; i<users.length; i++) {
+const newUsersG = [];
+for (var i = 0; i < users.length; i++) {
   newUsersG.push(users[i].json);
-  }
+}
 // console.log("gGRAPH");
 // console.log(users);
 //if filtered for availability 
@@ -387,10 +387,10 @@ aGraph.dijkstra(sourceUser2.index);
 var newUsers2 = new Array();
 newUsers2 = sortDistances(usersAvail);
 console.log(users);
-const newUsersA=[];
-for(var i=0; i<users.length; i++) {
+const newUsersA = [];
+for (var i = 0; i < users.length; i++) {
   newUsersG.push(users[i].json);
-  }
+}
 // console.log("aGRAPH");
 // console.log(users);
 
@@ -400,26 +400,6 @@ console.log(newUsersA);
 
 
 
-
-
-
-function send_nested(json_list, length) {
-  const arr = ['*p0*:', '*p1*:', '*p2*:', '*p3*:', '*p4*:', '*p5*:', '*p6*'];
-  let acc = "{"
-  for (let i = 0; i < length; i++) {
-    let string = JSON.stringify(json_list[i]);
-    acc = acc + arr[i] + JSON.stringify(json_list[i]);
-  }
-  acc = acc + "}";
-  //acc = acc.replace(/\\/g, '');
-  return acc;
-}
-//console.log("Above 2d JSON");
-const d_JSON = JSON.stringify({ "p0": string_array[0] });
-//console.log(JSON.stringify({ "p0": string_array[0] }));
-const a = JSON.parse(d_JSON);
-// console.log("Array parsed: " + JSON.stringify(a.p0));
-// console.log("Array parsed: " + JSON.stringify(a.p0));
 
 
 
@@ -452,23 +432,26 @@ app.get('/test-mongo', (req, resp) => {
 
 
 //COMPATIBILITY, AVAILABILITY, COMBINED
-app.get('/compatibility/:name', function (req, res, next) {
-  //  res.json({msg: 'This is CORS-enabled for all origins!'})
-  //  res.send({ title: 'GeeksforGeeks' });
-  //console.log(req.params.name);
-  const list = JSON.stringify({
-    "p0": new_string_array[0], "p1": new_string_array[1], "p2": new_string_array[2],
-    "p3": new_string_array[3], "p4": new_string_array[4], "p5": new_string_array[5], "p6": new_string_array[6]
-  });
+function parse(qs) {
+  return qs.
+    replace(/^\?/, '').
+    split('&').
+    map(str => str.split('=').map(v => decodeURIComponent(v)));
+}
 
-  // res.send(req.params.name );
-  res.send(list);
 
-  //const content = req.params.name;
-  //const new_user = JSON.parse(content);
-  //users_as_java_script_objects.push(new_user);
-  //var user= User(new_user);
-  //    users.push(user);
+
+
+
+app.get('/cmp/:cat/:rank', function (req, res, next) {
+
+  console.log("name = " + req.params.name);
+  console.log("last : " + req.params.last);
+  const rank = parseInt(req.params.rank);
+  //// res.send(req.params.name );
+  console.log(rank + 2);
+  res.send("hello");
+
 })
 
 
@@ -501,19 +484,6 @@ app.get('/simplest/:name', function (req, res, next) {
 })
 
 
-app.get('/sort_1/:name', function (req, res, next) {
-  //res.json({msg: 'This is CORS-enabled for all origins!'})
-
-  //res.send({ title: 'GeeksforGeeks' });
-  //console.log(req.params.name);
-  res.send(req.params.name);
-  const content = req.params.name
-  const new_user = JSON.parse(content)
-  users_as_java_script_objects.push(new_user);
-  //var user= User(new_user);
-  //    users.push(user);
-
-})
 
 
 
