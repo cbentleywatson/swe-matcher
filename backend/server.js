@@ -86,6 +86,7 @@ function calcWeightGeneral(user1, user2) {
   let weight2 = 1 / (calcWeightCompatibility(user1, user2));
   return 1 / (weight1 + weight2);
 }
+
 class User {
   constructor(new_user, index, distance) {
     this.index = index;
