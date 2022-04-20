@@ -178,9 +178,6 @@ const Basic_Questions = () => {
     console.log("Result!");
     //alert("THIS is Alert and send, which merges the send and results functions");
 
-
-
-
     //alert(results);
     //alert("Fetch user funct");
 
@@ -196,14 +193,13 @@ const Basic_Questions = () => {
         //alert("axios response");
 
 
-
-
         // You can change the nymber of people to return]
         //  all_compatibility_data = get_data_lib.get_user_compatibility_rankings(6);
 
         //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
-      }).then(() => { all_compatibility_data = get_data_lib.get_user_compatibility_rankings(3) })
-      .then(() => { alert(all_compatibility_data[1]) })
+      }).then(() => { Promise.resolve(all_compatibility_data); })
+      .then(() => { all_compatibility_data = get_data_lib.get_user_compatibility_rankings(3); })
+      .then(() => { alert(all_compatibility_data[0]); })
 
 
 
@@ -222,7 +218,7 @@ const Basic_Questions = () => {
 
 
 
-    //    window.location.href = 'http://localhost:3000/results'
+    window.location.href = 'http://localhost:3000/results';
   }, []);
   /*
   const get_data = useCallback((sender) => {
@@ -342,6 +338,7 @@ const Basic_Questions = () => {
   //survey.onComplete.add(handleOnSubmit);
   //survey.onComplete.add(alertResults);
   survey.onComplete.add(alert_and_send);
+  console.log("data" + all_compatibility_data);
 
   //survey.onComplete.add(get_data);//survey.onComplete.add(handleOnSubmit);
 
