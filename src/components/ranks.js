@@ -52,7 +52,7 @@ async function get_compatible_users_by_category(cat, number) {
 
     return from_new;
 }
-async function test_order(number_requested) {
+async function get_user_compatibility_rankings(number_requested) {
     // number_requested = 3;
     general = await get_compatible_users_by_category("general", number_requested);
     for (let i = 0; i < 25; i++) {
@@ -108,4 +108,5 @@ async function test_order(number_requested) {
 
 
 }
-test_order(3);
+get_user_compatibility_rankings(3);
+module.exports = { test_order: get_user_compatibility_rankings };
