@@ -57,6 +57,7 @@ async function get_compatible_users_by_category(cat, number) {
     return from_new;
 }
 async function get_user_compatibility_rankings(number_requested) {
+    console.log("IN USER COMPATIBILITY!!!");
     // number_requested = 3;
     var general = await get_compatible_users_by_category("general", number_requested);
     for (let i = 0; i < 25; i++) {
@@ -87,11 +88,20 @@ async function get_user_compatibility_rankings(number_requested) {
     //  return final_filled_string_arr;
 
 
-    var users_by_cat_and_rank;
-    users_by_cat_and_rank.general = general;
-    users_by_cat_and_rank.available = available;
-    users_by_cat_and_rank.compatibility = compatibility;
-    return users_by_cat_and_rank;
+    //var users_by_cat_and_rank;
+    //users_by_cat_and_rank.general = general;
+    //users_by_cat_and_rank.available = available;
+    //users_by_cat_and_rank.compatibility = compatibility;
+    const return_array = [general, available, compatibility]
+    g = return_array[0];
+    console.log("checkG");
+    console.log(g);
+    console.log("checkG internal");
+    console.log(g[0]);
+    console.log("Check JSOn");
+    json_version = JSON.parse(g[0]);
+    console.log(json_version.FirstName);
+    return return_array;
 
 
 
@@ -112,5 +122,6 @@ async function get_user_compatibility_rankings(number_requested) {
 
 
 }
-//get_user_compatibility_rankings(3);
-module.exports = { get_user_compatibility_rankings };
+get_user_compatibility_rankings(3);
+
+module.exports = { get_user_compatibility_rankings, get_compatible_users_by_category };

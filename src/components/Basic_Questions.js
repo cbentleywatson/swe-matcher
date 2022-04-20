@@ -190,38 +190,62 @@ const Basic_Questions = () => {
       .then((response) => {
         //alert("in response");
         console.log("Sent From the test");
-        console.log(JSON.stringify(response.data));
-        alert(response.data);
+        //console.log(JSON.stringify(response.data));
+        //alert(response.data);
         //    alert(response);
         //alert("axios response");
+
+
+
+
 
 
         // You can change the nymber of people to return]
         //  all_compatibility_data = get_data_lib.get_user_compatibility_rankings(6);
 
         //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
-      }).then((response) => {
-        //general, ava, compatibility are the options
-        var number_of_users_to_display = 4;
-        const all_user_data = get_data_lib.get_user_compatibility_rankings(number_of_users_to_display);
-        const ava_users = all_user_data.ava;
-        const first_user = ava_users[0];
-        console.log(first_user);
-        json_first_user = JSON.parse(first_user);
-        console.log(json_first_user.FirstName);
-        //alert(JSON.stringify(first_user));
-      })
-      .catch((error) => {
+      }).catch((error) => {
         alert("Error! " + error);
         //alert("request " + request);
         console.log(error);
 
 
       })
+    //general, ava, compatibility are the options
+
+
+
+
     window.location.href = 'http://localhost:3000/results'
   }, []);
+  const get_data = useCallback((sender) => {
+    alert("Get Data RUNS");
+    var number_of_users_to_display = 4;
+    const all_user_data = get_data_lib.get_user_compatibility_rankings(number_of_users_to_display);
+    for (let i = 0; i < 25; i++) {
+      console.log();
+      //console.log("in general");
+      //console.log(general[i]);
+    }
+    alert(" immediately after get data");
+    const ava_users = all_user_data.ava;
+    const first_user = ava_users[0];
+    alert(first_user);
+    console.log(first_user);
+    var json_first_user = JSON.parse(first_user);
+    console.log("Users first Name is: ");
+    //alert(JSON.stringify(first_user));
+  }, []);
 
-  /*
+
+
+
+
+
+
+
+
+  /*r
            axios({
             method: 'get',
             url: 'http://localhost:5000/simplest/'+ results,
@@ -311,7 +335,8 @@ const Basic_Questions = () => {
   //survey.onComplete.add(handleOnSubmit);
   //survey.onComplete.add(alertResults);
   survey.onComplete.add(alert_and_send);
-  //survey.onComplete.add(handleOnSubmit);
+
+  survey.onComplete.add(get_data);//survey.onComplete.add(handleOnSubmit);
 
   return (
     <div className="Basic">
