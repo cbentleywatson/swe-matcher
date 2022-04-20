@@ -198,8 +198,6 @@ const Basic_Questions = () => {
 
 
 
-
-
         // You can change the nymber of people to return]
         //  all_compatibility_data = get_data_lib.get_user_compatibility_rankings(6);
 
@@ -232,8 +230,8 @@ const Basic_Questions = () => {
     const first_user = ava_users[0];
     alert(first_user);
     console.log(first_user);
-    var json_first_user = JSON.parse(first_user);
-    console.log("Users first Name is: ");
+    //var json_first_user = JSON.parse(first_user);
+    console.log("Users first Name is: " + first_user.First_Name);
     //alert(JSON.stringify(first_user));
   }, []);
 

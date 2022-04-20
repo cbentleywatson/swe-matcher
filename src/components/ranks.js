@@ -31,7 +31,7 @@ async function getUser(cat, rank, array) {
 }
 
 async function get_compatible_users_by_category(cat, number) {
-    var ar = [];
+    // var ar = [];
     var cur;
     var from_new = new Array(number);
 
@@ -93,14 +93,14 @@ async function get_user_compatibility_rankings(number_requested) {
     //users_by_cat_and_rank.available = available;
     //users_by_cat_and_rank.compatibility = compatibility;
     const return_array = [general, available, compatibility]
-    g = return_array[0];
-    console.log("checkG");
-    console.log(g);
-    console.log("checkG internal");
-    console.log(g[0]);
-    console.log("Check JSOn");
-    json_version = JSON.parse(g[0]);
-    console.log(json_version.FirstName);
+    const g = return_array[0];
+    //console.log("checkG");
+    //console.log(g);
+    //console.log("checkG internal");
+    //console.log(g[0]);
+    //console.log("Check JSOn");
+    //json_version = JSON.parse(g[0]);
+    //console.log(g[0].FirstName);
     return return_array;
 
 
@@ -124,4 +124,5 @@ async function get_user_compatibility_rankings(number_requested) {
 }
 get_user_compatibility_rankings(3);
 
+console.log()
 module.exports = { get_user_compatibility_rankings, get_compatible_users_by_category };
