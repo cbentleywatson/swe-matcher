@@ -479,7 +479,7 @@ app.get('/simplest/:name', function (req, res, next) {
 
   //res.send({ title: 'GeeksforGeeks' });
   //console.log(req.params.name);
-  res.send(req.params.name);
+
   const content = req.params.name
   const new_user = JSON.parse(content)
   users_as_java_script_objects.push(new_user);
@@ -500,6 +500,8 @@ app.get('/simplest/:name', function (req, res, next) {
     }
     //done!
   })
+
+  res.send(req.params.name);
 })
 
 

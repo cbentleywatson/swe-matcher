@@ -30,8 +30,46 @@ async function getUser(cat, rank, array) {
 
 }
 
+async function getUser_2(cat, array) {
+    var route = "http://localhost:5000/cmp"
+    for (let i = 0; i < array.length; i++) {
+        var target = route + "/" + cat + "/" + i;
+        //back
+        console.log(target);
+        var data = "";
+
+        const d = await axios.get(target)
+            .then((response) => {
+                //alert("in response");
+                let a = '';
+                //a = a + response.data;
+                //console.log(response.data);
+                data = response.data;
+
+                //    alert(response);
+                //alert("axios response");
+                //return data;
+                //   console.log(data);
+                array[i] = data; //JSON.parse(data);
+                return data;
+                //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
+            })
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 async function get_compatible_users_by_category(cat, number) {
-    // var ar = [];
+    var ar = [];
     var cur;
     var from_new = new Array(number);
 
@@ -87,7 +125,7 @@ async function get_user_compatibility_rankings(number_requested) {
     //  const final_filled_string_arr = { general, available, compatibility };
     //  return final_filled_string_arr;
 
-
+    console.log("ARRRRAAAAAAAAAAAAAAAAAAAAYYYYYYYYYYYYYYYY");
     //var users_by_cat_and_rank;
     //users_by_cat_and_rank.general = general;
     //users_by_cat_and_rank.available = available;
@@ -95,7 +133,7 @@ async function get_user_compatibility_rankings(number_requested) {
     const return_array = [general, available, compatibility]
     const g = return_array[0];
     //console.log("checkG");
-    //console.log(g);
+    console.log(g);
     //console.log("checkG internal");
     //console.log(g[0]);
     //console.log("Check JSOn");
@@ -125,4 +163,17 @@ async function get_user_compatibility_rankings(number_requested) {
 get_user_compatibility_rankings(3);
 
 console.log()
-module.exports = { get_user_compatibility_rankings, get_compatible_users_by_category };
+module.exports = { get_user_compatibility_rankings }//, get_compatible_users_by_category };
+/*
+
+console.log("FIFFFFFFFFFIIIIIIIIIIIIIIIIIIIIIIINNNNNNNNNNNNNNNNNNNNAAAAAAAAAAAAAAAAAAALLLLLLLLLLLLL");
+number = 3;
+var from_new = new Array(number);
+getUser_2("general", from_new);
+for (let i = 0; i < 5000; i++) {
+    console.log("*");
+}
+
+
+console.log(from_new);
+*/

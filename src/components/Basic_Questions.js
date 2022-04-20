@@ -209,6 +209,9 @@ const Basic_Questions = () => {
 
 
       })
+
+
+    console.log(get_data_lib.get_user_compatibility_rankings(3));
     //general, ava, compatibility are the options
 
 
