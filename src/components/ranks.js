@@ -109,4 +109,4 @@ async function get_user_compatibility_rankings(number_requested) {
 
 }
 get_user_compatibility_rankings(3);
-module.exports = { test_order: get_user_compatibility_rankings };
+module.exports = { get_user_compatibility_rankings };
