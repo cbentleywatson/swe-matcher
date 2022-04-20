@@ -373,30 +373,37 @@ for (var i = 0; i < users.length; i++) {
 // console.log("CGRAPH");
 // console.log(users);
 //if filtered for general compatibility and availability
+
+
 gGraph.dijkstra(sourceUser3.index);
 var newUsers3 = new Array();
 newUsers3 = sortDistances(usersGen);
 console.log(users);
-const newUsersG = [];
+const newUsersGeneralCompatibility = [];
+
 for (var i = 0; i < users.length; i++) {
-  newUsersG.push(users[i].json);
+  newUsersGeneralCompatibility.push(users[i].json);
 }
 // console.log("gGRAPH");
 // console.log(users);
 //if filtered for availability 
+
+
+
+
 aGraph.dijkstra(sourceUser2.index);
-var newUsers2 = new Array();
-newUsers2 = sortDistances(usersAvail);
+var availabilty_result_strins = new Array();
+availabilty_result_strins = sortDistances(usersAvail);
 console.log(users);
 const newUsersA = [];
 for (var i = 0; i < users.length; i++) {
-  newUsersG.push(users[i].json);
+  newUsersA.push(users[i].json);
 }
 // console.log("aGRAPH");
 // console.log(users);
 
 console.log(newUsersC);
-console.log(newUsersG);
+console.log(newUsersGeneralCompatibility);
 console.log(newUsersA);
 
 
@@ -439,20 +446,31 @@ function parse(qs) {
     split('&').
     map(str => str.split('=').map(v => decodeURIComponent(v)));
 }
-
-
+console.log(newUsersA);
+console.log(newUsersC);
+console.log(newUsersGeneralCompatibility);
 
 
 
 app.get('/cmp/:cat/:rank', function (req, res, next) {
 
-  console.log("name = " + req.params.name);
+  //console.log("name = " + req.params.name);
   console.log("last : " + req.params.last);
   const rank = parseInt(req.params.rank);
   //// res.send(req.params.name );
-  console.log(rank + 2);
-  res.send("hello");
+  console.log("" + rank);
+  //res.send("" + rank);
+  cat = req.params.cat
+  if (cat == "ava") {
+    res.send(newUsersA[rank]);
 
+  } else if (cat == "general") {
+    res.send(newUsersGeneralCompatibility[rank]);
+    console.log("In general");
+  } else if (cat == "compatibility") {
+
+    res.send(newUsersC[rank]);
+  }
 })
 
 
