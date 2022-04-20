@@ -1,155 +1,32 @@
 import { useEffect, useState } from "react";
 import "./result_style.css";
+import all_compatibility_data from "./Basic_Questions"
 
-const img = new Image(100, 200); // width, height
-img.src = "https://picsum.photos/200/301";
 
 export default function Show_Results() {
     const DataC = [
-        {
-          firstName: "Lindsay",
-          lastName: "Lord",
-          year: "4th year",
-          dept: "Engineering", 
-          email: "lindsay.lord",
-          studyTimes: "Monday Tuesday Evening", 
-          locations: "Marston",
-          similarClass: "CEN3031",
-          virtual: "Zoom",
-          studySetting: "Group", 
-          problemApproach: "Theoretical",
-          outgoingness: "Extroverted", 
-          planning: "Plan Ahead"
-        },
-        {
-            firstName: "Maya",
-            lastName: "Harris",
-            year: "3rd year",
-            dept: "Engineering", 
-            email: "blah",
-            studyTimes: "Monday Tuesday Evening", 
-            locations: "Marston",
-            similarClass: "CEN3031",
-            virtual: "Zoom",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead"
-          },
-          {
-            firstName: "Joe",
-            lastName: "Sulkes",
-            year: "2nd year",
-            dept: "Engineering", 
-            email: "cool_email",
-            studyTimes: "Monday Tuesday Evening", 
-            locations: "Marston",
-            similarClass: "CEN3031",
-            virtual: "Zoom",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead"
-          },
+      {"FirstName":"amanda","LastName":"poop","Year":"3rd year","Department":"Engineering","Email":"apoop","StudyDay":["Monday","Wednesday"],"StudyTime":["Early Afternoon","Late Afternoon"],"StudyLength":"20+","Location":["Coffee Shop","Classroom Hall","Law Library"],"SimilarClass":"cop4020","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Extroverted","Planning":"Adapt as you go"},
+      {"FirstName":"lindsay ","LastName":"lord","Year":"5th year","Department":"Arts","Email":"lcjioejf","StudyDay":["Wednesday","Friday"],"StudyTime":["Early Afternoon","Morning"],"StudyLength":"20+","Location":["Zoom","Classroom Hall","Library West"],"SimilarClass":"cop2530","StudySetting":"One on one","ProblemApproach":"Theoretical","Outgoingness":"Introverted","Planning":"Plan Ahead"},
+      {"FirstName":"eeee","LastName":"eeee","Year":"3rd year","Department":"Business","Email":"a@gmail","StudyDay":["Wednesday"],"StudyTime":["Early Afternoon"],"StudyLength":"11-20","Location":["Marston"],"SimilarClass":"ddd","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Ambiverted","Planning":"Plan Ahead"}
         
     ];
 
     const DataA = [
-        {
-            firstName: "Maya",
-            lastName: "Harris",
-            year: "3rd year",
-            dept: "Engineering", 
-            email: "blah",
-            studyTimes: "Monday Tuesday Evening", 
-            locations: "Marston",
-            similarClass: "CEN3031",
-            virtual: "Zoom",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead"
-          },
-        {
-          firstName: "Lindsay",
-          lastName: "Lord",
-          year: "4th year",
-          dept: "Engineering", 
-          email: "lindsay.lord",
-          studyTimes: "Monday Tuesday Evening", 
-          locations: "Marston",
-          similarClass: "CEN3031",
-          virtual: "Zoom",
-          studySetting: "Group", 
-          problemApproach: "Theoretical",
-          outgoingness: "Extroverted", 
-          planning: "Plan Ahead"
-        },
-          {
-            firstName: "Joe",
-            lastName: "Sulkes",
-            year: "2nd year",
-            dept: "Engineering", 
-            email: "cool_email",
-            studyTimes: "Monday Tuesday Evening", 
-            locations: "Marston",
-            similarClass: "CEN3031",
-            virtual: "Zoom",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead"
-          }
+      {"FirstName":"lindsay","LastName":"lord","Year":"3rd year","Department":"Engineering","Email":"apoop","StudyDay":["Monday","Wednesday"],"StudyTime":["Early Afternoon","Late Afternoon"],"StudyLength":"20+","Location":["Coffee Shop","Classroom Hall","Law Library"],"SimilarClass":"cop4020","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Extroverted","Planning":"Adapt as you go"},
+      {"FirstName":"ddd ","LastName":"ddd","Year":"5th year","Department":"Arts","Email":"lcjioejf","StudyDay":["Wednesday","Friday"],"StudyTime":["Early Afternoon","Morning"],"StudyLength":"20+","Location":["Zoom","Classroom Hall","Library West"],"SimilarClass":"cop2530","StudySetting":"One on one","ProblemApproach":"Theoretical","Outgoingness":"Introverted","Planning":"Plan Ahead"},
+      {"FirstName":"fff","LastName":"fff","Year":"3rd year","Department":"Business","Email":"a@gmail","StudyDay":["Wednesday"],"StudyTime":["Early Afternoon"],"StudyLength":"11-20","Location":["Marston"],"SimilarClass":"ddd","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Ambiverted","Planning":"Plan Ahead"}
         
-      ];
-      const DataT = [
-        {
-            firstName: "Joe",
-            lastName: "Sulkes",
-            year: "2nd year",
-            dept: "Engineering", 
-            email: "cool_email",
-            studyTimes: "Monday Tuesday Evening", 
-            locations: "Marston",
-            similarClass: "CEN3031",
-            virtual: "Zoom",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead"
-          },
-        {
-            firstName: "Maya",
-            lastName: "Harris",
-            year: "3rd year",
-            dept: "Engineering", 
-            email: "blah",
-            studyTimes: "Monday Tuesday Evening", 
-            locations: "Marston",
-            similarClass: "CEN3031",
-            virtual: "Zoom",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead"
-          },
-        {
-          firstName: "Lindsay",
-          lastName: "Lord",
-          year: "4th year",
-          dept: "Engineering", 
-          email: "lindsay.lord",
-          studyTimes: "Monday Tuesday Evening", 
-          locations: "Marston",
-          similarClass: "CEN3031",
-          virtual: "Zoom",
-          studySetting: "Group", 
-          problemApproach: "Theoretical",
-          outgoingness: "Extroverted", 
-          planning: "Plan Ahead"
-        }
+    ];
+
+    const DataT = [
+      {"FirstName":"amanda","LastName":"poop","Year":"3rd year","Department":"Engineering","Email":"apoop","StudyDay":["Monday","Wednesday"],"StudyTime":["Early Afternoon","Late Afternoon"],"StudyLength":"20+","Location":["Coffee Shop","Classroom Hall","Law Library"],"SimilarClass":"cop4020","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Extroverted","Planning":"Adapt as you go"},
+      {"FirstName":"lindsay ","LastName":"lord","Year":"5th year","Department":"Arts","Email":"lcjioejf","StudyDay":["Wednesday","Friday"],"StudyTime":["Early Afternoon","Morning"],"StudyLength":"20+","Location":["Zoom","Classroom Hall","Library West"],"SimilarClass":"cop2530","StudySetting":"One on one","ProblemApproach":"Theoretical","Outgoingness":"Introverted","Planning":"Plan Ahead"},
+      {"FirstName":"eeee","LastName":"eeee","Year":"3rd year","Department":"Business","Email":"a@gmail","StudyDay":["Wednesday"],"StudyTime":["Early Afternoon"],"StudyLength":"11-20","Location":["Marston"],"SimilarClass":"ddd","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Ambiverted","Planning":"Plan Ahead"}
         
-      ];
+    ];
+    
+    
+    
   // List of all cars satisfing all the filters
   const [filteredList, setFilteredList] = useState(DataT);
   // Selected filter
@@ -178,10 +55,9 @@ export default function Show_Results() {
     return filteredUsers;
   };
 
-  // Toggle seletedYear state
+  // Toggle seletedFilter state
   const handleFilterChange = (event) => {
     const input = event.target.id;
-
     if (input === selectedFilter) {
       setSelectedFilter("");
     } else {
@@ -223,12 +99,17 @@ export default function Show_Results() {
       <div id="user-list">
         {filteredList.map((item, index) => (
           <div className="car-item" key={index}>
-            <h3 className="user-name">{`${item.firstName}${" " + item.lastName}`}</h3>
-            <div className="user-year">{`Year: ${item.year}`}</div>
-            <div className="user-dept">{`Department: ${item.dept}`}</div>
-            <div className="user-virtual">{`Preference for: ${item.virtual}`}</div>
-            <div className="user-studySetting">{`Prefer to work in: ${item.studySetting}`}</div>
-            <div className="user-studySetting">{`Email address: ${item.email}`}</div>
+              <div>
+                  <img className="car-image" src= {"https://i.pinimg.com/564x/02/3d/99/023d9921b290368909e47bb8b6e02f0d.jpg"} alt= "car-img"/>
+                  <h4 className="user-name">{`${item.FirstName}${" " + item.LastName}`}</h4>
+                  <div className="user-score">{`${item.score}${"% compatible"}`}</div>
+              </div>
+            <div className="user-year">{`Year: ${item.Year}`}</div>
+            <div className="user-dept">{`Department: ${item.Department}`}</div>
+            <div className="user-studySetting">{`Prefer to work: ${item.StudySetting}`}</div>
+            <div className="user-studySetting">{`Days: ${item.StudyDay}${"// Time:" + item.StudyTime}`}</div>
+            <div className="user-studySetting">{`Personality: ${item.ProblemApproach + ", " + item.Outgoingness + ", " + item.Planning}`}</div>
+            <div className="user-email">{`Email address: ${item.Email}`}</div>
           </div>
         ))}
       </div>

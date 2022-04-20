@@ -220,6 +220,7 @@ const Basic_Questions = () => {
 
 
     console.log(get_data_lib.get_user_compatibility_rankings(3));
+    window.location.href = 'http://localhost:3000/results';
     //general, ava, compatibility are the options
 
 
@@ -311,6 +312,7 @@ const Basic_Questions = () => {
 
     const results = JSON.stringify(sender.data);
     console.log("Result!");
+    window.location.href = 'http://localhost:3000/results';
     //      alert(" results "  +results);
     //      alert(results);
     //const results = JSON.stringify(sender.data);
