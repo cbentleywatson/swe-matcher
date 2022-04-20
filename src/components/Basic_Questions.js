@@ -8,7 +8,10 @@ import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 const axios = require('axios');
 console.log("log checlk");
 StylesManager.applyTheme("modern");
-
+const get_data_lib = require("./ranks.js");
+//const functions = =
+//const fs = require('browserify-fs')
+//lib.get_user_strings_from_db("file.log");
 
 
 
@@ -72,7 +75,7 @@ function fetchUser() {
 
 
 // Start Of Back end team script 
-``
+
 /*
 //fetch('http://localhost:5000/survey-results-post')
 fetch('http://example.com/movies.json')
@@ -192,7 +195,14 @@ const Basic_Questions = () => {
         //    alert(response);
         //alert("axios response");
 
+
+        // You can change the nymber of people to return]
+        //  all_compatibility_data = get_data_lib.get_user_compatibility_rankings(6);
+
         //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
+      }).then((response) => {
+        var number_of_users_to_display = 4;
+        all_user_data = get_user_compatibility_rankings(number_of_users_to_display);
       })
       .catch((error) => {
         alert("Error! " + error);

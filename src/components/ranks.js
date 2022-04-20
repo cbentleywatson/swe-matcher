@@ -1,8 +1,12 @@
 const axios = require('axios');
-debug = true;
+
+
+
+//const axios = require('axios');
+var debug = true;
 async function getUser(cat, rank, array) {
-    route = "http://localhost:5000/cmp"
-    target = route + "/" + cat + "/" + rank;
+    var route = "http://localhost:5000/cmp"
+    var target = route + "/" + cat + "/" + rank;
     //back
     console.log(target);
     var data = "";
@@ -19,7 +23,7 @@ async function getUser(cat, rank, array) {
             //alert("axios response");
             //return data;
             //   console.log(data);
-            array[rank] = data;
+            array[rank] = JSON.parse(data);
             return data;
             //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
         })
@@ -29,7 +33,7 @@ async function getUser(cat, rank, array) {
 async function get_compatible_users_by_category(cat, number) {
     var ar = [];
     var cur;
-    from_new = new Array(number);
+    var from_new = new Array(number);
 
 
     for (let i = 0; i < number; i++) {
@@ -54,7 +58,7 @@ async function get_compatible_users_by_category(cat, number) {
 }
 async function get_user_compatibility_rankings(number_requested) {
     // number_requested = 3;
-    general = await get_compatible_users_by_category("general", number_requested);
+    var general = await get_compatible_users_by_category("general", number_requested);
     for (let i = 0; i < 25; i++) {
         console.log("*");
     }
@@ -62,13 +66,13 @@ async function get_user_compatibility_rankings(number_requested) {
         console.log("in general");
         console.log(general[i]);
     }
-    available = await get_compatible_users_by_category("ava", number_requested);
+    var available = await get_compatible_users_by_category("ava", number_requested);
     for (let i = 0; i < 3; i++) {
         console.log("in available");
         console.log(available[i]);
     }
 
-    compatibility = await get_compatible_users_by_category("compatibility", number_requested);
+    var compatibility = await get_compatible_users_by_category("compatibility", number_requested);
     for (let i = 0; i < 3; i++) {
         console.log("in compatible");
         console.log(compatibility[i]);
@@ -79,16 +83,16 @@ async function get_user_compatibility_rankings(number_requested) {
 
     //      CHOOSE THE FORMAT YOU WANT HERE --  JUST REMOVE THE RIGHT COMMENTS
 
-    const final_filled_string_arr = { general, available, compatibility };
-    return final_filled_string_arr;
+    //  const final_filled_string_arr = { general, available, compatibility };
+    //  return final_filled_string_arr;
 
-    /*
-    var final_filled_string_list_general;
-    final_filled_string_list.general = general;
-    final_filled_string_list.available =available;
-    final_filled_string_list.compatibility =compatibility;
-    return final_filled_string_list;
-    */
+
+    var users_by_cat_and_rank;
+    users_by_cat_and_rank.general = general;
+    users_by_cat_and_rank.available = available;
+    users_by_cat_and_rank.compatibility = compatibility;
+    return users_by_cat_and_rank;
+
 
 
     /*
@@ -108,5 +112,5 @@ async function get_user_compatibility_rankings(number_requested) {
 
 
 }
-get_user_compatibility_rankings(3);
+//get_user_compatibility_rankings(3);
 module.exports = { get_user_compatibility_rankings };
