@@ -14,7 +14,7 @@ const get_data_lib = require("./ranks.js");
 //lib.get_user_strings_from_db("file.log");
 
 
-
+var all_compatibility_data;
 
 
 //alert("Basic Questions Start"); working test funct
@@ -202,7 +202,12 @@ const Basic_Questions = () => {
         //  all_compatibility_data = get_data_lib.get_user_compatibility_rankings(6);
 
         //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
-      }).catch((error) => {
+      }).then(() => { all_compatibility_data = get_data_lib.get_user_compatibility_rankings(3) })
+      .then(() => { alert(all_compatibility_data[1]) })
+
+
+
+      .catch((error) => {
         alert("Error! " + error);
         //alert("request " + request);
         console.log(error);
@@ -217,8 +222,9 @@ const Basic_Questions = () => {
 
 
 
-    window.location.href = 'http://localhost:3000/results'
+    //    window.location.href = 'http://localhost:3000/results'
   }, []);
+  /*
   const get_data = useCallback((sender) => {
     alert("Get Data RUNS");
     var number_of_users_to_display = 4;
@@ -238,7 +244,7 @@ const Basic_Questions = () => {
     //alert(JSON.stringify(first_user));
   }, []);
 
-
+*/
 
 
 
@@ -337,7 +343,7 @@ const Basic_Questions = () => {
   //survey.onComplete.add(alertResults);
   survey.onComplete.add(alert_and_send);
 
-  survey.onComplete.add(get_data);//survey.onComplete.add(handleOnSubmit);
+  //survey.onComplete.add(get_data);//survey.onComplete.add(handleOnSubmit);
 
   return (
     <div className="Basic">

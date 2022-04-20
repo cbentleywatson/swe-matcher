@@ -133,7 +133,7 @@ async function get_user_compatibility_rankings(number_requested) {
     const return_array = [general, available, compatibility]
     const g = return_array[0];
     //console.log("checkG");
-    console.log(g);
+    //console.log(g);
     //console.log("checkG internal");
     //console.log(g[0]);
     //console.log("Check JSOn");
@@ -160,9 +160,9 @@ async function get_user_compatibility_rankings(number_requested) {
 
 
 }
-get_user_compatibility_rankings(3);
+//get_user_compatibility_rankings(3);
 
-console.log()
+//console.log()
 module.exports = { get_user_compatibility_rankings }//, get_compatible_users_by_category };
 /*
 
