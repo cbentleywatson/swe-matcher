@@ -191,7 +191,7 @@ const Basic_Questions = () => {
         //alert("in response");
         console.log("Sent From the test");
         //console.log(JSON.stringify(response.data));
-        //alert(response.data);
+        alert(response.data);
         //    alert(response);
         //alert("axios response");
 
@@ -203,7 +203,10 @@ const Basic_Questions = () => {
 
         //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
       }).then(() => { all_compatibility_data = get_data_lib.get_user_compatibility_rankings(3) })
-      .then(() => { alert(all_compatibility_data[1]) })
+      .then(() => {
+        console.log("TEST OF RECEIPY");
+        //console.log(all_compatibility_data[1])
+      })
 
 
 

@@ -8,7 +8,7 @@ async function getUser(cat, rank, array) {
     var route = "http://localhost:5000/cmp"
     var target = route + "/" + cat + "/" + rank;
     //back
-    console.log(target);
+    //console.log(target);
     var data = "";
 
     const d = await axios.get(target)
@@ -35,7 +35,7 @@ async function getUser_2(cat, array) {
     for (let i = 0; i < array.length; i++) {
         var target = route + "/" + cat + "/" + i;
         //back
-        console.log(target);
+        //  console.log(target);
         var data = "";
 
         const d = await axios.get(target)
@@ -80,7 +80,7 @@ async function get_compatible_users_by_category(cat, number) {
         console.log("");
         console.log("");
         console.log("");
-        console.log(a);
+        //console.log(a);
         //        console.log(from_new[i]);
     }
     for (let i = 0; i < 25; i++) {
@@ -95,26 +95,26 @@ async function get_compatible_users_by_category(cat, number) {
     return from_new;
 }
 async function get_user_compatibility_rankings(number_requested) {
-    console.log("IN USER COMPATIBILITY!!!");
+    //console.log("IN USER COMPATIBILITY!!!");
     // number_requested = 3;
     var general = await get_compatible_users_by_category("general", number_requested);
     for (let i = 0; i < 25; i++) {
         console.log("*");
     }
     for (let i = 0; i < 3; i++) {
-        console.log("in general");
-        console.log(general[i]);
+        //console.log("in general");
+        //console.log(general[i]);
     }
     var available = await get_compatible_users_by_category("ava", number_requested);
     for (let i = 0; i < 3; i++) {
-        console.log("in available");
-        console.log(available[i]);
+        //console.log("in available");
+        //console.log(available[i]);
     }
 
     var compatibility = await get_compatible_users_by_category("compatibility", number_requested);
     for (let i = 0; i < 3; i++) {
-        console.log("in compatible");
-        console.log(compatibility[i]);
+        // console.log("in compatible");
+        // console.log(compatibility[i]);
     }
 
     // pick your format
@@ -125,7 +125,7 @@ async function get_user_compatibility_rankings(number_requested) {
     //  const final_filled_string_arr = { general, available, compatibility };
     //  return final_filled_string_arr;
 
-    console.log("ARRRRAAAAAAAAAAAAAAAAAAAAYYYYYYYYYYYYYYYY");
+    //console.log("ARRRRAAAAAAAAAAAAAAAAAAAAYYYYYYYYYYYYYYYY");
     //var users_by_cat_and_rank;
     //users_by_cat_and_rank.general = general;
     //users_by_cat_and_rank.available = available;
