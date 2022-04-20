@@ -201,8 +201,15 @@ const Basic_Questions = () => {
 
         //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
       }).then((response) => {
+        //general, ava, compatibility are the options
         var number_of_users_to_display = 4;
-        all_user_data = get_user_compatibility_rankings(number_of_users_to_display);
+        const all_user_data = get_data_lib.get_user_compatibility_rankings(number_of_users_to_display);
+        const ava_users = all_user_data.ava;
+        const first_user = ava_users[0];
+        console.log(first_user);
+        json_first_user = JSON.parse(first_user);
+        console.log(json_first_user.FirstName);
+        //alert(JSON.stringify(first_user));
       })
       .catch((error) => {
         alert("Error! " + error);

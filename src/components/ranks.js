@@ -23,7 +23,7 @@ async function getUser(cat, rank, array) {
             //alert("axios response");
             //return data;
             //   console.log(data);
-            array[rank] = JSON.parse(data);
+            array[rank] = data; //JSON.parse(data);
             return data;
             //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
         })
