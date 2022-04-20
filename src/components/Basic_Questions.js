@@ -98,19 +98,11 @@ fetch('http://localhost/survey-results-post', {
 //alert(JSON.stringify(data));
 
 const Basic_Questions = () => {
-
-
     const survey = new Model(surveyJSON);
     const alertResults = useCallback((sender) => {
-    /*The results need to be send right here */
-      
     const results = JSON.stringify(sender.data);
-    //console.log("Result!");
-    window.location.href = 'http://localhost:3000/results';
-  //alert("before axios");
- 
 
-  //alert(results);
+    window.location.href = 'http://localhost:3000/results';
   }, []);
   survey.onComplete.add(alertResults);
   

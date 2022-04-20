@@ -54,7 +54,6 @@ const Welcome = () => {
                 <NavLink to="/survey" >Create Profile</NavLink>
             </TouchableOpacity>
         </View>
-        <NavLink to="/results" >Show Results</NavLink>
         </div>
     );
 

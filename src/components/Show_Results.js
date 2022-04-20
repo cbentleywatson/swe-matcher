@@ -4,176 +4,26 @@ import "./result_style.css";
 
 export default function Show_Results() {
     const DataC = [
-        {
-            firstName: "Maya",
-            lastName: "Harris",
-            url: "https://i.pinimg.com/564x/02/3d/99/023d9921b290368909e47bb8b6e02f0d.jpg",
-            year: "2nd year",
-            dept: "Engineering", 
-            email: "maya.harris@ufl.edu",
-            studyDays: "Tuesday, Thursday",
-            studyTimes: "Morning", 
-            locations: "Library West",
-            similarClass: "CEN3031",
-            virtual: "In-person",
-            studySetting: "Individual", 
-            problemApproach: "Practical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead", 
-            score: "64"
-          },
-          {
-            firstName: "Joe",
-            lastName: "Sulkes",
-            url: "https://i.pinimg.com/564x/f7/7e/b5/f77eb5b99a00ae191bca970db847a38d.jpg",
-            year: "2nd year",
-            dept: "Engineering", 
-            email: "jsulkes@ufl.edu",
-            studyTimes: "Monday, Friday",
-            studyDays: "Late Afternoon, Nightowl", 
-            locations: "Marston",
-            similarClass: "CEN3031",
-            virtual: "Zoom",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead", 
-            score: "78"
-          },
-          {
-            firstName: "Lindsay",
-            url: "https://i.pinimg.com/564x/b7/ef/91/b7ef914b4b9e35fdcd193612652dbe90.jpg",
-            lastName: "Lord",
-            year: "4th year",
-            dept: "Engineering", 
-            email: "lindsay.lord@ufl.edu",
-            studyTimes: "Monday, Tuesday, Wednesday",
-            studyDays: "Evening", 
-            locations: "Classroom Hall",
-            similarClass: "CEN3031",
-            virtual: "In-Person",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Adapt as you go", 
-            score: "51"
-          }
+      {"FirstName":"amanda","LastName":"poop","Year":"3rd year","Department":"Engineering","Email":"apoop","StudyDay":["Monday","Wednesday"],"StudyTime":["Early Afternoon","Late Afternoon"],"StudyLength":"20+","Location":["Coffee Shop","Classroom Hall","Law Library"],"SimilarClass":"cop4020","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Extroverted","Planning":"Adapt as you go"},
+      {"FirstName":"lindsay ","LastName":"lord","Year":"5th year","Department":"Arts","Email":"lcjioejf","StudyDay":["Wednesday","Friday"],"StudyTime":["Early Afternoon","Morning"],"StudyLength":"20+","Location":["Zoom","Classroom Hall","Library West"],"SimilarClass":"cop2530","StudySetting":"One on one","ProblemApproach":"Theoretical","Outgoingness":"Introverted","Planning":"Plan Ahead"},
+      {"FirstName":"eeee","LastName":"eeee","Year":"3rd year","Department":"Business","Email":"a@gmail","StudyDay":["Wednesday"],"StudyTime":["Early Afternoon"],"StudyLength":"11-20","Location":["Marston"],"SimilarClass":"ddd","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Ambiverted","Planning":"Plan Ahead"}
         
     ];
+
     const DataA = [
-          {
-            firstName: "Joe",
-            lastName: "Sulkes",
-            url: "https://i.pinimg.com/564x/f7/7e/b5/f77eb5b99a00ae191bca970db847a38d.jpg",
-            year: "2nd year",
-            dept: "Engineering", 
-            email: "jsulkes@ufl.edu",
-            studyTimes: "Monday, Friday",
-            studyDays: "Late Afternoon, Nightowl",
-            locations: "Marston",
-            similarClass: "CEN3031",
-            virtual: "Zoom",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead", 
-            score: "78"
-          },
-          {
-            firstName: "Lindsay",
-            url: "https://i.pinimg.com/564x/b7/ef/91/b7ef914b4b9e35fdcd193612652dbe90.jpg",
-            lastName: "Lord",
-            year: "4th year",
-            dept: "Engineering", 
-            email: "lindsay.lord@ufl.edu",
-            studyTimes: "Monday, Tuesday, Wednesday",
-            studyDays: "Evening", 
-            locations: "Classroom Hall",
-            similarClass: "CEN3031",
-            virtual: "In-Person",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Adapt as you go", 
-            score: "51"
-          },
-          {
-            firstName: "Maya",
-            lastName: "Harris",
-            url: "https://i.pinimg.com/564x/02/3d/99/023d9921b290368909e47bb8b6e02f0d.jpg",
-            year: "2nd year",
-            dept: "Engineering", 
-            email: "maya.harris@ufl.edu",
-            studyDays: "Tuesday, Thursday",
-            studyTimes: "Morning", 
-            locations: "Library West",
-            similarClass: "CEN3031",
-            virtual: "In-person",
-            studySetting: "Individual", 
-            problemApproach: "Practical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead", 
-            score: "64"
-          },
+      {"FirstName":"lindsay","LastName":"lord","Year":"3rd year","Department":"Engineering","Email":"apoop","StudyDay":["Monday","Wednesday"],"StudyTime":["Early Afternoon","Late Afternoon"],"StudyLength":"20+","Location":["Coffee Shop","Classroom Hall","Law Library"],"SimilarClass":"cop4020","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Extroverted","Planning":"Adapt as you go"},
+      {"FirstName":"ddd ","LastName":"ddd","Year":"5th year","Department":"Arts","Email":"lcjioejf","StudyDay":["Wednesday","Friday"],"StudyTime":["Early Afternoon","Morning"],"StudyLength":"20+","Location":["Zoom","Classroom Hall","Library West"],"SimilarClass":"cop2530","StudySetting":"One on one","ProblemApproach":"Theoretical","Outgoingness":"Introverted","Planning":"Plan Ahead"},
+      {"FirstName":"fff","LastName":"fff","Year":"3rd year","Department":"Business","Email":"a@gmail","StudyDay":["Wednesday"],"StudyTime":["Early Afternoon"],"StudyLength":"11-20","Location":["Marston"],"SimilarClass":"ddd","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Ambiverted","Planning":"Plan Ahead"}
         
     ];
+
     const DataT = [
-          {
-            firstName: "Joe",
-            lastName: "Sulkes",
-            url: "https://i.pinimg.com/564x/f7/7e/b5/f77eb5b99a00ae191bca970db847a38d.jpg",
-            year: "2nd year",
-            dept: "Engineering", 
-            email: "jsulkes@ufl.edu",
-            studyTimes: "Monday, Friday",
-            studyDays: "Late Afternoon, Nightowl",
-            locations: "Marston",
-            similarClass: "CEN3031",
-            virtual: "Zoom",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead", 
-            score: "78"
-          },
-          {
-            firstName: "Maya",
-            lastName: "Harris",
-            url: "https://i.pinimg.com/564x/02/3d/99/023d9921b290368909e47bb8b6e02f0d.jpg",
-            year: "2nd year",
-            dept: "Engineering", 
-            email: "maya.harris@ufl.edu",
-            studyDays: "Tuesday, Thursday",
-            studyTimes: "Morning", 
-            locations: "Library West",
-            similarClass: "CEN3031",
-            virtual: "In-person",
-            studySetting: "Individual", 
-            problemApproach: "Practical",
-            outgoingness: "Extroverted", 
-            planning: "Plan Ahead", 
-            score: "64"
-          },
-          {
-            firstName: "Lindsay",
-            url: "https://i.pinimg.com/564x/b7/ef/91/b7ef914b4b9e35fdcd193612652dbe90.jpg",
-            lastName: "Lord",
-            year: "4th year",
-            dept: "Engineering", 
-            email: "lindsay.lord@ufl.edu",
-            studyTimes: "Monday, Tuesday, Wednesday",
-            studyDays: "Evening", 
-            locations: "Classroom Hall",
-            similarClass: "CEN3031",
-            virtual: "In-Person",
-            studySetting: "Group", 
-            problemApproach: "Theoretical",
-            outgoingness: "Extroverted", 
-            planning: "Adapt as you go", 
-            score: "51"
-          }
+      {"FirstName":"amanda","LastName":"poop","Year":"3rd year","Department":"Engineering","Email":"apoop","StudyDay":["Monday","Wednesday"],"StudyTime":["Early Afternoon","Late Afternoon"],"StudyLength":"20+","Location":["Coffee Shop","Classroom Hall","Law Library"],"SimilarClass":"cop4020","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Extroverted","Planning":"Adapt as you go"},
+      {"FirstName":"lindsay ","LastName":"lord","Year":"5th year","Department":"Arts","Email":"lcjioejf","StudyDay":["Wednesday","Friday"],"StudyTime":["Early Afternoon","Morning"],"StudyLength":"20+","Location":["Zoom","Classroom Hall","Library West"],"SimilarClass":"cop2530","StudySetting":"One on one","ProblemApproach":"Theoretical","Outgoingness":"Introverted","Planning":"Plan Ahead"},
+      {"FirstName":"eeee","LastName":"eeee","Year":"3rd year","Department":"Business","Email":"a@gmail","StudyDay":["Wednesday"],"StudyTime":["Early Afternoon"],"StudyLength":"11-20","Location":["Marston"],"SimilarClass":"ddd","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Ambiverted","Planning":"Plan Ahead"}
         
     ];
+    
     
     
   // List of all cars satisfing all the filters
@@ -204,10 +54,9 @@ export default function Show_Results() {
     return filteredUsers;
   };
 
-  // Toggle seletedYear state
+  // Toggle seletedFilter state
   const handleFilterChange = (event) => {
     const input = event.target.id;
-
     if (input === selectedFilter) {
       setSelectedFilter("");
     } else {
@@ -250,16 +99,16 @@ export default function Show_Results() {
         {filteredList.map((item, index) => (
           <div className="car-item" key={index}>
               <div>
-                  <img className="car-image" src= {item.url} alt= "car-img"/>
-                  <h4 className="user-name">{`${item.firstName}${" " + item.lastName}`}</h4>
+                  <img className="car-image" src= {"https://i.pinimg.com/564x/02/3d/99/023d9921b290368909e47bb8b6e02f0d.jpg"} alt= "car-img"/>
+                  <h4 className="user-name">{`${item.FirstName}${" " + item.LastName}`}</h4>
                   <div className="user-score">{`${item.score}${"% compatible"}`}</div>
               </div>
-            <div className="user-year">{`Year: ${item.year}`}</div>
-            <div className="user-dept">{`Department: ${item.dept}`}</div>
-            <div className="user-studySetting">{`Prefer to work: ${item.studySetting}${" via " + item.virtual}`}</div>
-            <div className="user-studySetting">{`Days: ${item.studyDays}${"// Time:" + item.studyTimes}`}</div>
-            <div className="user-studySetting">{`Personality: ${item.problemApproach + ", " + item.outgoingness + ", " + item.planning}`}</div>
-            <div className="user-email">{`Email address: ${item.email}`}</div>
+            <div className="user-year">{`Year: ${item.Year}`}</div>
+            <div className="user-dept">{`Department: ${item.Department}`}</div>
+            <div className="user-studySetting">{`Prefer to work: ${item.StudySetting}`}</div>
+            <div className="user-studySetting">{`Days: ${item.StudyDay}${"// Time:" + item.StudyTime}`}</div>
+            <div className="user-studySetting">{`Personality: ${item.ProblemApproach + ", " + item.Outgoingness + ", " + item.Planning}`}</div>
+            <div className="user-email">{`Email address: ${item.Email}`}</div>
           </div>
         ))}
       </div>

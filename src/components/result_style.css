@@ -39,7 +39,7 @@ body {
   .car-item {
     display: grid;
     font-family: jetbrains-mono;
-    font-size: 18px;
+    font-size: 17px;
     height: 300px;
     flex-direction: column;
     background-color: #b9db92;
