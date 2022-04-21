@@ -152,37 +152,45 @@ const handleOnSubmit = async(e) => {
 
 
 
-// End of backend team work
 
 
 
-
-
-
-//alert(JSON.stringify(data));
 
 const Basic_Questions =  () => {
 
-
     const survey = new Model(surveyJSON);
-
-
+    const final_post = useCallback((sender) => {
+    /*The results need to be send right here */
+      
+      const results = JSON.stringify(sender.data);
+      console.log("Result!");
+      alert("Begin copied lines")
+      e.preventDefault();
+      let result = await fetch(
+        ' http://localhost:5000/register', {
+            method: "post",
+            body: results,
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        }
+      )
+      result = await result.json();
+      console.warn(result);
+      if (result) {
+          alert("Data saved successfully");
+          //setEmail("");
+         // setName("");
+      }
+      
+    }, []);
 
     const alert_and_send = useCallback((sender) => {
       /*The results need to be send right here */
         // e.preventDefault();
         const results = JSON.stringify(sender.data);
         console.log("Result!");
-        //alert("THIS is Alert and send, which merges the send and results functions");
-        
-     
-        
-        
-        //alert(results);
-        //alert("Fetch user funct");
-        
-        //const res = await axios.get('https://example.com/someApi');
-        
+
          axios.get('http://localhost:5000/simplest/'+ results)
               .then( (response) => {
               //alert("in response");
@@ -204,98 +212,28 @@ const Basic_Questions =  () => {
         window.location.href='http://localhost:3000/results' 
       }, []);
 
-/*
-         axios({
-          method: 'get',
-          url: 'http://localhost:5000/simplest/'+ results,
-          timeout: 8000 // Let's say you want to wait at least 8 seconds
-        })
-        .then(function (response) {
-              console.log(response);
-              alert(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-*/
 
-
-
-
-
-
-
-
-
-        //const results = JSON.stringify(sender.data);
-        // Beginning of functions from the test set up
-        
-        /*
-        alert("Begin copied lines")
-        e.preventDefault();
-        let result = await fetch(
-          ' http://localhost:5000/register', {
-              method: "post",
-              body: "hell0",
-              headers: {
-                'Content-Type': 'application/json'
-              }
-          }
-        )
-        result = await result.json();
-        console.warn(result);
-        if (result) {
-            alert("Data saved successfully");
-            //setEmail("");
-           // setName("");
-        }
-        */
-        // End of pulled functions
-  
-    //    alert(results);
-    
-
-    const alertResults = useCallback((sender) => {
-    /*The results need to be send right here */
-      
-      const results = JSON.stringify(sender.data);
-      console.log("Result!");
-//      alert(" results "  +results);
-//      alert(results);
-      //const results = JSON.stringify(sender.data);
-      // Beginning of functions from the test set up
-      
-      /*
-      alert("Begin copied lines")
-      e.preventDefault();
-      let result = await fetch(
-        ' http://localhost:5000/register', {
-            method: "post",
-            body: "hell0",
-            headers: {
-              'Content-Type': 'application/json'
-            }
-        }
-      )
-      result = await result.json();
-      console.warn(result);
-      if (result) {
-          alert("Data saved successfully");
-          //setEmail("");
-         // setName("");
-      }
-      */
-      // End of pulled functions
-
-  //    alert(results);
-    }, []);
-  // Start of backend call!
-  //const s = sender;
-  //survey.onComplete.add(handleOnSubmit);
-  //survey.onComplete.add(alertResults);
   survey.onComplete.add(alert_and_send);
+  survey.onComplete.add(final_post);
   //survey.onComplete.add(handleOnSubmit);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   return (
     <div className="Basic">
      <h1> <center>MatchMakers</center></h1>
