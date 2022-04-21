@@ -26,7 +26,7 @@ export default function Show_Results() {
       {"FirstName":"Lindsay","LastName":"Lord","Year":"4th year","Department":"Engineering","Email":"lindsay.lord@ufl.edu","StudyDay":["Monday","Wednesday"],"StudyTime":["Early Afternoon","Late Afternoon"],"StudyLength":"20+","Location":["Coffee Shop","Classroom Hall","Law Library"],"SimilarClass":"cop4020","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Extroverted","Planning":"Adapt as you go"},
         
     ];
-    var users_c, users_a, users_t;
+    var users_c, users_a, users_t, complete_filtered_users;
 
 
     
@@ -35,59 +35,81 @@ export default function Show_Results() {
   // Selected filter
   const [selectedFilter, setSelectedFilter] = useState();
 
-  const filterByCategory = (filteredData) => {
+  function handleAxiosStuff () {
+    axios.get('http://localhost:5000/getUser')
+    .then((response) => {
+      //alert("in response");
+      console.log("Sent From the test");
+      users_c = response.data.new_users_c;
+      users_a = response.data.new_users_a;
+      users_t = response.data.new_users_g;
+
+      console.log(users_c);
+      console.log(users_c[0]);
+      //variable = users_c[0];
+      var parse_me;
+
+      //parse_me = null;
+      parse_me = JSON.parse(users_c[0]);
+      console.log(parse_me);
+
+      complete_filtered_users.push(parse_me);
+      console.log(complete_filtered_users);
+      
+      //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
+    })
+    .then(() => {
+      console.log("TEST OF RECEIPY");
+      //console.log(all_compatibility_data[1])
+    })
+    .catch((error) => {
+      alert("Error! " + error);
+      //alert("request " + request);
+      console.log(error);
+    })
+  }
+
+
+  const filterByCategory = (complete_filtered_users) => {
     //in here is where we want to switch between arrays
     // Avoid filter for null value
     if (!selectedFilter) {
-      return filteredData;
+      return complete_filtered_users;
     }
 
     var filteredUsers;
     if (selectedFilter == "Compatibility")
     {
-        filteredUsers = users_c;
-        axios.get('http://localhost:5000/getUser')
-      .then((response) => {
-        //alert("in response");
-        console.log("Sent From the test");
-        //console.log(JSON.stringify(response.data));
-        //console.log(response.data);
-        //console.log(response.body.data.new_users_c);
-        users_c = response.data.new_users_c;
-        //writeToFile (users_c, "./new_users_c.txt");
-        users_a = response.data.new_users_a;
-        //writeToFile (users_a, "./new_users_a.txt");
-        users_t = response.data.new_users_g;
-        //writeToFile (users_t, "./new_users_t.txt");
-        console.log(users_c);
-        alert("usersc.FirstName" + users_c[0].FirstName);
-
-        //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
-      })
-      .then(() => {
-        console.log("TEST OF RECEIPY");
-        //console.log(all_compatibility_data[1])
-      })
-      .catch((error) => {
-        alert("Error! " + error);
-        //alert("request " + request);
-        console.log(error);
-
-
-      })
-
-        //alert(filteredUsers);
-        //alert(users_c);
+      handleAxiosStuff();
+      console.log(users_c[0]);
+      filteredUsers = users_c;
+      complete_filtered_users[0] = JSON.parse(users_c[0]);
+      //complete_filtered_users = null;
+      //for (let i = 0; i < filteredUsers.size; i++) {
+        //complete_filtered_users[i] = JSON.parse(filteredUsers[i]);
+      //}
+      console.log(complete_filtered_users);
     }
     else if (selectedFilter == "Availability")
     {
-        filteredUsers = users_a;
+      handleAxiosStuff();
+      filteredUsers = users_a;
+      complete_filtered_users = null;
+      for (let i = 0; i < filteredUsers.length; i++) {
+        complete_filtered_users[i] = JSON.parse(filteredUsers[i]);
+      }
+      console.log(complete_filtered_users);
     }
     else
     {
-        filteredUsers = users_t;
+      handleAxiosStuff();
+      filteredUsers = users_t;
+      complete_filtered_users = null;
+      for (let i = 0; i < filteredUsers.length; i++) {
+        complete_filtered_users[i] = JSON.parse(filteredUsers[i]);
+      }
     }
-    return filteredUsers;
+    return complete_filtered_users;
   };
 
   // Toggle seletedFilter state
