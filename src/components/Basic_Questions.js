@@ -14,7 +14,21 @@ const get_data_lib = require("./ranks.js");
 //lib.get_user_strings_from_db("file.log");
 
 
-var all_compatibility_data;
+var users_c, users_a, users_t;
+
+
+export function Return_C() {
+  return users_c;
+}
+
+export function Return_A() {
+  return users_a;
+}
+
+export function Return_G() {
+  return users_t;
+}
+
 
 
 //alert("Basic Questions Start"); working test funct
@@ -60,9 +74,6 @@ function fetchUser() {
 }
 
 //fetchUser();
-
-
-
 
 
 
@@ -190,8 +201,15 @@ const Basic_Questions = () => {
         //alert("in response");
         console.log("Sent From the test");
         //console.log(JSON.stringify(response.data));
-        alert(response.data);
-        alert(response.body.data.new_users_c);
+        //console.log(response.data);
+        //console.log(response.body.data.new_users_c);
+        users_c = response.data.new_users_c;
+        users_a = response.data.new_users_a;
+        users_t = response.data.new_users_g;
+        alert(users_c);
+
+        //put into a file
+        
         //    alert(response);
         //alert("axios response");
 
@@ -202,7 +220,7 @@ const Basic_Questions = () => {
         //  all_compatibility_data = get_data_lib.get_user_compatibility_rankings(6);
 
         //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
-      }).then(() => { all_compatibility_data = get_data_lib.get_user_compatibility_rankings(3) })
+      })
       .then(() => {
         console.log("TEST OF RECEIPY");
         //console.log(all_compatibility_data[1])

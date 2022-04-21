@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./result_style.css";
-import all_compatibility_data from "./Basic_Questions"
-
+import {Return_G, Return_A, Return_C} from "./Basic_Questions"
 
 export default function Show_Results() {
   //putting dummy data here -> backend didn't connect
@@ -44,15 +43,17 @@ export default function Show_Results() {
     var filteredUsers;
     if (selectedFilter == "Compatibility")
     {
-        filteredUsers = DataC;
+        filteredUsers = Return_C();
+        alert(filteredUsers);
+        //alert(users_c);
     }
     else if (selectedFilter == "Availability")
     {
-        filteredUsers = DataA;
+        filteredUsers = Return_A();
     }
     else
     {
-        filteredUsers = DataT;
+        filteredUsers = Return_G();
     }
     return filteredUsers;
   };
@@ -105,12 +106,7 @@ export default function Show_Results() {
                   <img className="car-image" src= {"https://i.pinimg.com/564x/02/3d/99/023d9921b290368909e47bb8b6e02f0d.jpg"} alt= "car-img"/>
                   <h2 className="user-name">{`${item.FirstName}${" " + item.LastName}`}</h2>
               </div>
-            <div className="user-year">{`Year: ${item.Year}`}</div>
-            <div className="user-dept">{`Department: ${item.Department}`}</div>
-            <div className="user-studySetting">{`Prefer to work: ${item.StudySetting}`}</div>
-            <div className="user-studySetting">{`Days: ${item.StudyDay}${"// Time:" + item.StudyTime}`}</div>
-            <div className="user-studySetting">{`Personality: ${item.ProblemApproach + ", " + item.Outgoingness + ", " + item.Planning}`}</div>
-            <div className="user-email">{`Email address: ${item.Email}`}</div>
+            
           </div>
         ))}
       </div>
