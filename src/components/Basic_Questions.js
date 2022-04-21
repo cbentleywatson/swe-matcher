@@ -175,9 +175,8 @@ const Basic_Questions = () => {
     /*The results need to be send right here */
     // e.preventDefault();
     const results = JSON.stringify(sender.data);
-    console.log("Result!");
+    alert("Result!");
     //alert("THIS is Alert and send, which merges the send and results functions");
-
 
 
 
@@ -186,12 +185,13 @@ const Basic_Questions = () => {
 
     //const res = await axios.get('https://example.com/someApi');
 
-    axios.get('http://localhost:5000/simplest/' + results)
+    axios.get('http://localhost:5000/getUser')
       .then((response) => {
         //alert("in response");
         console.log("Sent From the test");
         //console.log(JSON.stringify(response.data));
         alert(response.data);
+        alert(response.body.data.new_users_c);
         //    alert(response);
         //alert("axios response");
 
