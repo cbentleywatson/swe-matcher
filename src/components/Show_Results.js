@@ -27,7 +27,7 @@ export default function Show_Results() {
         
     ];
     var users_c, users_a, users_t;
-    var complete_filtered_users = [];
+    var complete_filtered_users = new Array();
 
 
     
@@ -140,8 +140,9 @@ export default function Show_Results() {
     var filteredData = filterByCategory(complete_filtered_users);
     console.log("filter");
 
-    console.log(filteredData);
-    console.log(DataC);
+    console.log(filteredData[0]);
+    //console.log(users_c[0]);
+    //console.log(typeof(DataC[0]));
 
     setFilteredList(filteredData);
   }, [selectedFilter]);
