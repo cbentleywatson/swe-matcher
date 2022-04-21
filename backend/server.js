@@ -273,8 +273,6 @@ class availabilityGraph {
   }
 }
 
-
-
 // import './User.js';
 // import generalGraph from './User.js';
 // import compatibleGraph from './User.js';
@@ -429,10 +427,6 @@ app.get('/test-mongo', (req, resp) => {
 
 
 
-console.log(newUsersA);
-console.log(newUsersC);
-console.log(newUsersGeneralCompatibility);
-
 
 
 
@@ -470,24 +464,4 @@ router.get('/getUser/:name', function (req, res) {
 });
 
 
-router.get('/test-longer/:name', function (req, res) {
-
-  var user = JSON.parse(req.params.name);
-  res.send('hello ' + req.params.name + '!' + " From user obj: " + user.fn);
-  //console.log("first name:" + req.params.name);
-  // console.log("last name: "+ req.params.last);
-});
-
-/// working
-router.get('/submit-user-results:results', function (req, res) {
-
-  var user = JSON.parse(req.params.name);
-  res.send('hello ' + req.params.results + '!' + " From user obj: " + user.fn);
-  //console.log("first name:" + req.params.results);
-  // console.log("last name: "+ req.params.last);
-});
-
-app.use('/', router);
-console.log("Hello");
-//
 app.listen(5000);
