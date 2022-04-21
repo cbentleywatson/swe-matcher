@@ -1,4 +1,5 @@
 //con
+import App from "../src/App.js";
 
 function sortDistances(users) {
   let size = users.length;
@@ -284,7 +285,6 @@ const express = require("express");
 var request = require("request");
 const path = require('path');
 var router = express.Router();
-const app = express();
 const fs = require('fs')
 //const fs = require('browserify-fs')
 let data = "Hello and Welcome to linuxhint.com"
@@ -528,14 +528,19 @@ var db = firebase.firestore();
 */
 
 
-app.route('/test-post')
+App.route('/getUsers')
   /* Basic Tests*/
   .post(function (req, res) {
     console.log("post found");
-    res.send("Posted!");
+    const three_array = {
+      "new_users_c": newUsersC,
+      "new_users_a": newUsersA,
+      "new_users_g": newUsersGeneralCompatibility
+    }
+    res.send(three_array);
   });
 
-app.route('/simplest2')
+App.route('/simplest2')
   /* Basic Tests*/
   .get(function (req, res) {
     console.log("post found");

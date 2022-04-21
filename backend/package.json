@@ -7,6 +7,7 @@
     "test": "test-be",
     "devStart": "nodemon server.js"
   },
+  "type": "module",
   "author": "sulkes and watson",
   "license": "MIT",
   "devDependencies": {

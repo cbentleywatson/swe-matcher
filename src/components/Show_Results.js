@@ -48,7 +48,7 @@ export default function Show_Results() {
       //console.log(all_compatibility_data[0][0].firstName);
       //console.log(DataL);
       //console.log(all_compatibility_data);
-      filteredUsers = DataL;
+      filteredUsers = DataC;
     }
     else if (selectedFilter == "Availability")
     {

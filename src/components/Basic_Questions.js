@@ -183,10 +183,15 @@ const Basic_Questions = () => {
 
     //const res = await axios.get('https://example.com/someApi');
 
-    axios.get('http://localhost:5000/simplest/' + results)
+    axios.get('http://localhost:5000/getUsers/')
       .then((response) => {
         //alert("in response");
         console.log("Sent From the test");
+        const json_object = response.body.data; //json obj w array
+        console.log(response.body);
+        alert(json_object.new_users_c);
+
+
         //console.log(JSON.stringify(response.data));
         //alert(response.data);
         //    alert(response);
