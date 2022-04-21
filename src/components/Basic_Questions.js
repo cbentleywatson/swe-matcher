@@ -13,21 +13,8 @@ const get_data_lib = require("./ranks.js");
 //const fs = require('browserify-fs')
 //lib.get_user_strings_from_db("file.log");
 
-
+//our global variables that get sent to show_results
 var users_c, users_a, users_t;
-
-
-export function Return_C() {
-  return users_c;
-}
-
-export function Return_A() {
-  return users_a;
-}
-
-export function Return_G() {
-  return users_t;
-}
 
 
 
@@ -180,8 +167,6 @@ const Basic_Questions = () => {
 
   const survey = new Model(surveyJSON);
 
-
-
   const alert_and_send = useCallback((sender) => {
     /*The results need to be send right here */
     // e.preventDefault();
@@ -192,11 +177,11 @@ const Basic_Questions = () => {
 
 
     //alert(results);
-    //alert("Fetch user funct");
+    //alert("Fetch user funct");f
 
     //const res = await axios.get('https://example.com/someApi');
 
-    axios.get('http://localhost:5000/getUser')
+    /*axios.get('http://localhost:5000/getUser')
       .then((response) => {
         //alert("in response");
         console.log("Sent From the test");
@@ -206,18 +191,7 @@ const Basic_Questions = () => {
         users_c = response.data.new_users_c;
         users_a = response.data.new_users_a;
         users_t = response.data.new_users_g;
-        alert(users_c);
-
-        //put into a file
-        
-        //    alert(response);
-        //alert("axios response");
-
-
-
-
-        // You can change the nymber of people to return]
-        //  all_compatibility_data = get_data_lib.get_user_compatibility_rankings(6);
+        //alert(users_c);
 
         //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
       })
@@ -225,16 +199,13 @@ const Basic_Questions = () => {
         console.log("TEST OF RECEIPY");
         //console.log(all_compatibility_data[1])
       })
-
-
-
       .catch((error) => {
         alert("Error! " + error);
         //alert("request " + request);
         console.log(error);
 
 
-      })
+      })*/
 
 
     console.log(get_data_lib.get_user_compatibility_rankings(3));
@@ -246,83 +217,7 @@ const Basic_Questions = () => {
 
     //    window.location.href = 'http://localhost:3000/results'
   }, []);
-  /*
-  const get_data = useCallback((sender) => {
-    alert("Get Data RUNS");
-    var number_of_users_to_display = 4;
-    const all_user_data = get_data_lib.get_user_compatibility_rankings(number_of_users_to_display);
-    for (let i = 0; i < 25; i++) {
-      console.log();
-      //console.log("in general");
-      //console.log(general[i]);
-    }
-    alert(" immediately after get data");
-    const ava_users = all_user_data.ava;
-    const first_user = ava_users[0];
-    alert(first_user);
-    console.log(first_user);
-    //var json_first_user = JSON.parse(first_user);
-    console.log("Users first Name is: " + first_user.First_Name);
-    //alert(JSON.stringify(first_user));
-  }, []);
-
-*/
-
-
-
-
-
-
-
-  /*r
-           axios({
-            method: 'get',
-            url: 'http://localhost:5000/simplest/'+ results,
-            timeout: 8000 // Let's say you want to wait at least 8 seconds
-          })
-          .then(function (response) {
-                console.log(response);
-                alert(response);
-          })
-          .catch(function (error) {
-              console.log(error);
-          });
-  */
-
-
-
-
-
-
-
-
-
-  //const results = JSON.stringify(sender.data);
-  // Beginning of functions from the test set up
-
-  /*
-  alert("Begin copied lines")
-  e.preventDefault();
-  let result = await fetch(
-    ' http://localhost:5000/register', {
-        method: "post",
-        body: "hell0",
-        headers: {
-          'Content-Type': 'application/json'
-        }
-    }
-  )
-  result = await result.json();
-  console.warn(result);
-  if (result) {
-      alert("Data saved successfully");
-      //setEmail("");
-     // setName("");
-  }
-  */
-  // End of pulled functions
-
-  //    alert(results);
+  
 
 
   const alertResults = useCallback((sender) => {

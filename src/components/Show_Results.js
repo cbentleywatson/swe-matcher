@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+
 import "./result_style.css";
-import {Return_G, Return_A, Return_C} from "./Basic_Questions"
+const axios = require('axios');
 
 export default function Show_Results() {
   //putting dummy data here -> backend didn't connect
@@ -25,8 +26,9 @@ export default function Show_Results() {
       {"FirstName":"Lindsay","LastName":"Lord","Year":"4th year","Department":"Engineering","Email":"lindsay.lord@ufl.edu","StudyDay":["Monday","Wednesday"],"StudyTime":["Early Afternoon","Late Afternoon"],"StudyLength":"20+","Location":["Coffee Shop","Classroom Hall","Law Library"],"SimilarClass":"cop4020","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Extroverted","Planning":"Adapt as you go"},
         
     ];
-    
-    
+    var users_c, users_a, users_t;
+
+
     
   // List of all cars satisfing all the filters
   const [filteredList, setFilteredList] = useState(DataT);
@@ -43,17 +45,47 @@ export default function Show_Results() {
     var filteredUsers;
     if (selectedFilter == "Compatibility")
     {
-        filteredUsers = Return_C();
-        alert(filteredUsers);
+        filteredUsers = users_c;
+        axios.get('http://localhost:5000/getUser')
+      .then((response) => {
+        //alert("in response");
+        console.log("Sent From the test");
+        //console.log(JSON.stringify(response.data));
+        //console.log(response.data);
+        //console.log(response.body.data.new_users_c);
+        users_c = response.data.new_users_c;
+        //writeToFile (users_c, "./new_users_c.txt");
+        users_a = response.data.new_users_a;
+        //writeToFile (users_a, "./new_users_a.txt");
+        users_t = response.data.new_users_g;
+        //writeToFile (users_t, "./new_users_t.txt");
+        console.log(users_c);
+        alert("usersc.FirstName" + users_c[0].FirstName);
+
+        //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
+      })
+      .then(() => {
+        console.log("TEST OF RECEIPY");
+        //console.log(all_compatibility_data[1])
+      })
+      .catch((error) => {
+        alert("Error! " + error);
+        //alert("request " + request);
+        console.log(error);
+
+
+      })
+
+        //alert(filteredUsers);
         //alert(users_c);
     }
     else if (selectedFilter == "Availability")
     {
-        filteredUsers = Return_A();
+        filteredUsers = users_a;
     }
     else
     {
-        filteredUsers = Return_G();
+        filteredUsers = users_t;
     }
     return filteredUsers;
   };
