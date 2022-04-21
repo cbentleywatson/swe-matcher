@@ -528,11 +528,16 @@ var db = firebase.firestore();
 */
 
 
-app.route('/test-post')
+app.route('/getUsers')
   /* Basic Tests*/
   .post(function (req, res) {
     console.log("post found");
-    res.send("Posted!");
+    const three_array = {
+      "new_users_c": newUsersC,
+      "new_users_a": newUsersA,
+      "new_users_g": newUsersGeneralCompatibility
+    }
+    res.send(three_array);
   });
 
 app.route('/simplest2')
