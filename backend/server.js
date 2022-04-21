@@ -105,7 +105,7 @@ class User {
     this.outgoingness = new_user.Outgoingness;
     this.planning = new_user.Planning;
     this.distance = distance;
-    this.json = JSON.stringify(new_user);
+    this.json = new_user; //JSON.stringify(new_user);
   }
 }
 
@@ -429,11 +429,39 @@ app.get('/test-mongo', (req, resp) => {
 
 
 
+app.get('/simplest/:name', function (req, res, next) {
+  //res.json({msg: 'This is CORS-enabled for all origins!'})
+
+  const content = req.params.name
+  const new_user = JSON.parse(content)
+  users_as_java_script_objects.push(new_user);
+  //var user= User(new_user);
+  //    users.push(user);
+
+  //user.index=users.length-1;
+  let addend = "";
+  if (string_array.length > 0) {
+    addend = "\n"
+  }
+  fs.appendFile('file.log', (addend + content), err => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    //done!
+  })
+  const three_array = {
+    "new_users_c": newUsersC,
+    "new_users_a": newUsersA,
+    "new_users_g": newUsersGeneralCompatibility
+  };
+  res.send(three_array);
+  //  res.send(req.params.name);
+})
 
 
 
-
-router.get('/getUser/:name', function (req, res) {
+router.get('/getUser', function (req, res) {
   const content = req.params.name
   const new_user = JSON.parse(content)
 
@@ -443,7 +471,7 @@ router.get('/getUser/:name', function (req, res) {
     "new_users_a": newUsersA,
     "new_users_g": newUsersGeneralCompatibility
   };
-
+  res.send(three_array);
 
   users_as_java_script_objects.push(new_user);
   //user.index=users.length-1;
@@ -459,7 +487,7 @@ router.get('/getUser/:name', function (req, res) {
     //done!
   })
 
-  res.send(three_array);
+
 
 });
 
