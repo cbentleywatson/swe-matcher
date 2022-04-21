@@ -26,7 +26,8 @@ export default function Show_Results() {
       {"FirstName":"Lindsay","LastName":"Lord","Year":"4th year","Department":"Engineering","Email":"lindsay.lord@ufl.edu","StudyDay":["Monday","Wednesday"],"StudyTime":["Early Afternoon","Late Afternoon"],"StudyLength":"20+","Location":["Coffee Shop","Classroom Hall","Law Library"],"SimilarClass":"cop4020","StudySetting":"Group","ProblemApproach":"Theoretical","Outgoingness":"Extroverted","Planning":"Adapt as you go"},
         
     ];
-    var users_c, users_a, users_t, complete_filtered_users;
+    var users_c, users_a, users_t;
+    var complete_filtered_users = [];
 
 
     
@@ -43,20 +44,13 @@ export default function Show_Results() {
       users_c = response.data.new_users_c;
       users_a = response.data.new_users_a;
       users_t = response.data.new_users_g;
-
-      console.log(users_c);
-      console.log(users_c[0]);
-      //variable = users_c[0];
       var parse_me;
 
-      //parse_me = null;
       parse_me = JSON.parse(users_c[0]);
-      console.log(parse_me);
-
-      complete_filtered_users.push(parse_me);
-      console.log(complete_filtered_users);
+      for (let i = 0; i < users_c.length; i++) {
+        complete_filtered_users[i] = parse_me;
+      }
       
-      //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
     })
     .then(() => {
       console.log("TEST OF RECEIPY");
@@ -80,14 +74,34 @@ export default function Show_Results() {
     var filteredUsers;
     if (selectedFilter == "Compatibility")
     {
-      handleAxiosStuff();
-      console.log(users_c[0]);
-      filteredUsers = users_c;
-      complete_filtered_users[0] = JSON.parse(users_c[0]);
-      //complete_filtered_users = null;
-      //for (let i = 0; i < filteredUsers.size; i++) {
-        //complete_filtered_users[i] = JSON.parse(filteredUsers[i]);
-      //}
+      axios.get('http://localhost:5000/getUser')
+      .then((response) => {
+        //alert("in response");
+        console.log("Sent From the test");
+        users_c = response.data.new_users_c;
+        users_a = response.data.new_users_a;
+        users_t = response.data.new_users_g;
+        var parse_me;
+  
+
+        for (let i = 0; i < users_c.length; i++) {
+          parse_me = JSON.parse(users_c[i]);
+          complete_filtered_users[i] = parse_me;
+
+        }
+        
+      })
+      .then(() => {
+        console.log("TEST OF RECEIPY");
+        //console.log(all_compatibility_data[1])
+      })
+      .catch((error) => {
+        alert("Error! " + error);
+        //alert("request " + request);
+        console.log(error);
+      })
+      //console.log(users_c[0]);
+      console.log('complete');
       console.log(complete_filtered_users);
     }
     else if (selectedFilter == "Availability")
@@ -123,7 +137,12 @@ export default function Show_Results() {
   };
 
   useEffect(() => {
-    var filteredData = filterByCategory(DataT);
+    var filteredData = filterByCategory(complete_filtered_users);
+    console.log("filter");
+
+    console.log(filteredData);
+    console.log(DataC);
+
     setFilteredList(filteredData);
   }, [selectedFilter]);
 
@@ -157,8 +176,7 @@ export default function Show_Results() {
         {filteredList.map((item, index) => (
           <div className="car-item" key={index}>
               <div>
-                  <img className="car-image" src= {"https://i.pinimg.com/564x/02/3d/99/023d9921b290368909e47bb8b6e02f0d.jpg"} alt= "car-img"/>
-                  <h2 className="user-name">{`${item.FirstName}${" " + item.LastName}`}</h2>
+                  <h2 className="user-name">{`${filteredList.FirstName}${" " + item.LastName}`}</h2>
               </div>
             
           </div>
