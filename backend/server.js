@@ -287,7 +287,13 @@ var router = express.Router();
 const app = express();
 const fs = require('fs')
 //const fs = require('browserify-fs')
-let data = "Hello and Welcome to linuxhint.com"
+
+
+
+
+// This section creates an "in memory" JSON data base and makes sure
+// sure it's representation is valid in case of illegal writes.
+// On startup all of the json objects in the file are loaded and
 const string_array = [];
 const users_as_java_script_objects = [];
 var users = [];
@@ -410,19 +416,6 @@ console.log(newUsersA);
 
 
 
-
-
-
-fs.writeFile('file.txt', data, { flag: 'a+' }, (err) => {
-
-  // error handling using throw
-
-  if (err) throw err;
-
-})
-
-
-
 var cors = require('cors')
 const port = process.env.PORT || 5000; // previously this was 3000
 app.set('port', port);
@@ -436,58 +429,29 @@ app.get('/test-mongo', (req, resp) => {
 
 
 
-
-
-
-//COMPATIBILITY, AVAILABILITY, COMBINED
-function parse(qs) {
-  return qs.
-    replace(/^\?/, '').
-    split('&').
-    map(str => str.split('=').map(v => decodeURIComponent(v)));
-}
 console.log(newUsersA);
 console.log(newUsersC);
 console.log(newUsersGeneralCompatibility);
 
 
 
-app.get('/cmp/:cat/:rank', function (req, res, next) {
-
-  //console.log("name = " + req.params.name);
-  console.log("last : " + req.params.last);
-  const rank = parseInt(req.params.rank);
-  //// res.send(req.params.name );
-  console.log("" + rank);
-  //res.send("" + rank);
-  cat = req.params.cat
-  if (cat == "ava") {
-    res.send(newUsersA[rank]);
-
-  } else if (cat == "general") {
-    res.send(newUsersGeneralCompatibility[rank]);
-    console.log("In general");
-  } else if (cat == "compatibility") {
-
-    res.send(newUsersC[rank]);
-  }
-})
 
 
-app.get('/simplest/:name', function (req, res, next) {
-  //res.json({msg: 'This is CORS-enabled for all origins!'})
 
-  //res.send({ title: 'GeeksforGeeks' });
-  //console.log(req.params.name);
 
+router.get('/getUser/:name', function (req, res) {
   const content = req.params.name
   const new_user = JSON.parse(content)
+
+  // just the router.get with 
+  const three_array = {
+    "new_users_c": newUsersC,
+    "new_users_a": newUsersA,
+    "new_users_g": newUsersGeneralCompatibility
+  };
+
+
   users_as_java_script_objects.push(new_user);
-  //var user= User(new_user);
-  //    users.push(user);
-
-
-
   //user.index=users.length-1;
   let addend = "";
   if (string_array.length > 0) {
@@ -501,94 +465,9 @@ app.get('/simplest/:name', function (req, res, next) {
     //done!
   })
 
-  res.send(req.params.name);
-})
+  res.send(three_array);
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-const firebase = require("firebase");
-require("firebase/firestore");
-firebase.initializeApp({
-    apiKey: "AIzaSyAbsyhPmWwBkwxihBLXU-rRd2JAHa-SYI0",
-    authDomain: "swe-matcher.firebaseapp.com",
-    projectId: "swe-matcher"
-  });
-var db = firebase.firestore();
-*/
-
-app.route('/simplest2')
-  /* Basic Tests*/
-  .get(function (req, res) {
-    console.log("post found");
-    res.send("Posted!");
-  });
-
-
-
-router.get('/test-get/:name', function (req, res) {
-  res.send('hello ' + req.params.name + '!');
-  console.log("got get");
 });
-
-
-
-// WORKING!!!! -- Gives the string from get request
-// The string can then be parsed and manipulated
-/*
-router.get('/simplest/:name', (req, res) => {
-    
-    //var user =JSON.parse(req.params.name);
-    //res.send('hello ' + req.params.name + '!');
-    //res.send({ title: 'GeeksforGeeks' });
-    
-    res.send("From the simplest function");
-    console.log("first name: " + req.params.name );
-   // console.log("last name: "+ req.params.last);
-  });
-*/
-
-
-/*
-app.route('/simplest/:name').get(function(){
-    
-  //var user =JSON.parse(req.params.name);
-  //res.send('hello ' + req.params.name + '!');
-  //res.send({ title: 'GeeksforGeeks' });
-  
-  res.send("From the simplest function");
-  console.log("first name: " + req.params.name );
- // console.log("last name: "+ req.params.last);
-});
-('/simplest/:name', (req, res) => {
-    
-  //var user =JSON.parse(req.params.name);
-  //res.send('hello ' + req.params.name + '!');
-  //res.send({ title: 'GeeksforGeeks' });
-  
-  res.send("From the simplest function");
-  console.log("first name: " + req.params.name );
- // console.log("last name: "+ req.params.last);
-});
-*/
-
-
-
-
-
-
-
-
 
 
 router.get('/test-longer/:name', function (req, res) {
@@ -608,33 +487,7 @@ router.get('/submit-user-results:results', function (req, res) {
   // console.log("last name: "+ req.params.last);
 });
 
-router.get('/getUser', function (req, res) {
-
-  const three_array = {
-    "new_users_c": newUsersC,
-    "new_users_a": newUsersA,
-    "new_users_g": newUsersGeneralCompatibility
-  };
-
-  res.send(three_array);
-  
-});
-
-
-
-
-
-
-
-
-
-
-
-// apply the routes to our application
 app.use('/', router);
-
-
-
 console.log("Hello");
 //
 app.listen(5000);
