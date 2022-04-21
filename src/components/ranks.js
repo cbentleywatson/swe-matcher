@@ -93,13 +93,13 @@ async function get_user_compatibility_rankings(number_requested) {
     //users_by_cat_and_rank.available = available;
     //users_by_cat_and_rank.compatibility = compatibility;
     const return_array = [general, available, compatibility]
-    g = return_array[0];
+    const g = return_array[0];
     console.log("checkG");
     console.log(g);
     console.log("checkG internal");
     console.log(g[0]);
     console.log("Check JSOn");
-    json_version = JSON.parse(g[0]);
+    const json_version = JSON.parse(g[0]);
     console.log(json_version.FirstName);
     return return_array;
 

@@ -1,7 +1,7 @@
 import 'survey-react/modern.min.css';
 import { useCallback } from 'react';
 
-import { Survey, StylesManager, Model } from 'survey-react';
+import { Survey, StylesManager, Model, surveyTimerFunctions } from 'survey-react';
 import { NavLink } from 'react-router-dom';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 //import{axios} from 'axios' ;
@@ -178,46 +178,63 @@ const Basic_Questions = () => {
     console.log("Result!");
     //alert("THIS is Alert and send, which merges the send and results functions");
 
-
-
-
-    //alert(results);
-    //alert("Fetch user funct");
-
-    //const res = await axios.get('https://example.com/someApi');
-
     axios.get('http://localhost:5000/simplest/' + results)
       .then((response) => {
         //alert("in response");
-        console.log("Sent From the test");
-        //console.log(JSON.stringify(response.data));
-        //alert(response.data);
-        //    alert(response);
-        //alert("axios response");
+        alert("axios get #1");
 
-
-
-
-
-
-        // You can change the nymber of people to return]
-        //  all_compatibility_data = get_data_lib.get_user_compatibility_rankings(6);
-
-        //this.setState({firstName: response.firstName, lastName: response.lastName, email: response.email})
       }).catch((error) => {
         alert("Error! " + error);
         //alert("request " + request);
         console.log(error);
-
-
       })
-    //general, ava, compatibility are the options
+
+
+
 
 
 
 
     window.location.href = 'http://localhost:3000/results'
   }, []);
+
+
+
+
+  const get_one_array = useCallback((sender) => {
+    /*The results need to be send right here */
+    // e.preventDefault();
+    const results = JSON.stringify(sender.data);
+    console.log("Result!");
+    //alert("THIS is Alert and send, which merges the send and results functions");
+
+    axios.get('http://localhost:5000/cmp/general/0' + results)
+      .then((response) => {
+        //alert("in response");
+        alert("axios get #1");
+
+      }).catch((error) => {
+        alert("Error! " + error);
+        //alert("request " + request);
+        console.log(error);
+      })
+
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const get_data = useCallback((sender) => {
     alert("Get Data RUNS");
     var number_of_users_to_display = 4;
@@ -238,64 +255,6 @@ const Basic_Questions = () => {
   }, []);
 
 
-
-
-
-
-
-
-
-  /*r
-           axios({
-            method: 'get',
-            url: 'http://localhost:5000/simplest/'+ results,
-            timeout: 8000 // Let's say you want to wait at least 8 seconds
-          })
-          .then(function (response) {
-                console.log(response);
-                alert(response);
-          })
-          .catch(function (error) {
-              console.log(error);
-          });
-  */
-
-
-
-
-
-
-
-
-
-  //const results = JSON.stringify(sender.data);
-  // Beginning of functions from the test set up
-
-  /*
-  alert("Begin copied lines")
-  e.preventDefault();
-  let result = await fetch(
-    ' http://localhost:5000/register', {
-        method: "post",
-        body: "hell0",
-        headers: {
-          'Content-Type': 'application/json'
-        }
-    }
-  )
-  result = await result.json();
-  console.warn(result);
-  if (result) {
-      alert("Data saved successfully");
-      //setEmail("");
-     // setName("");
-  }
-  */
-  // End of pulled functions
-
-  //    alert(results);
-
-
   const alertResults = useCallback((sender) => {
     /*The results need to be send right here */
 
@@ -306,37 +265,15 @@ const Basic_Questions = () => {
     //const results = JSON.stringify(sender.data);
     // Beginning of functions from the test set up
 
-    /*
-    alert("Begin copied lines")
-    e.preventDefault();
-    let result = await fetch(
-      ' http://localhost:5000/register', {
-          method: "post",
-          body: "hell0",
-          headers: {
-            'Content-Type': 'application/json'
-          }
-      }
-    )
-    result = await result.json();
-    console.warn(result);
-    if (result) {
-        alert("Data saved successfully");
-        //setEmail("");
-       // setName("");
-    }
-    */
-    // End of pulled functions
 
-    //    alert(results);
   }, []);
   // Start of backend call!
   //const s = sender;
   //survey.onComplete.add(handleOnSubmit);
   //survey.onComplete.add(alertResults);
   survey.onComplete.add(alert_and_send);
-
-  survey.onComplete.add(get_data);//survey.onComplete.add(handleOnSubmit);
+  //surveyTimerFunctions.onComplete.add(get_one_array);
+  //survey.onComplete.add(get_data);//survey.onComplete.add(handleOnSubmit);
 
   return (
     <div className="Basic">
